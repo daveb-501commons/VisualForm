@@ -1,0 +1,30 @@
+<apex:page controller="VisualFormWizardController" tabStyle="Contact">
+    <apex:sectionHeader title="" subtitle="What kind of work do you do?" />
+    <apex:form >
+        <apex:pageBlock title="">
+
+            <apex:facet name="footer">
+                <apex:commandButton action="{!step2}" value="Next" styleClass="btn" />
+            </apex:facet>
+
+
+                <!-- <apex:panelGrid> tags organize data in the same way as
+ a table. It places all child elements in successive cells,
+ in left-to-right, top-to-bottom order -->
+
+                <!-- <apex:outputLabel> and <apex:inputField> tags can be 
+ bound together with the for and id attribute values,
+ respectively. -->
+
+                <apex:outputpanel id="plusimage">
+                    <apex:actionregion >
+					<apex:image url="{!URLFOR($Resource.VisualForm, 'PartnerFunnel1b.jpg')}" width="250" height="250">
+                        <apex:actionSupport event="onclick" action="{!step2}">
+							<apex:param name="{!managePeopleTrue}" value="{!managePeopleTrue}" assignTo="{!managePeople}"/>
+						</apex:actionSupport>
+                    </apex:image>
+                    </apex:actionregion>
+                </apex:outputpanel>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

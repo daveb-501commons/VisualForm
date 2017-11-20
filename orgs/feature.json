@@ -1,0 +1,11 @@
+{
+  "orgName": "VisualForm - Feature Test Org",
+  "edition": "Developer",
+  "orgPreferences" : {
+    "enabled": [
+      "S1DesktopEnabled",
+      "Translation",
+      "ChatterEnabled" 
+    ]
+  }
+}

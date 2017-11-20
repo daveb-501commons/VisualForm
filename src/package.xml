@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VisualForm</fullName>
+    <types>
+        <members>VisualFormController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>VisualForm</members>
+        <members>VisualFormStep2</members>
+        <members>VisualFormStep3</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>VisualForm</members>
+        <name>StaticResource</name>
+    </types>
+    <version>41.0</version>
+</Package>

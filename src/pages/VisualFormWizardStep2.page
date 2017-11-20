@@ -1,0 +1,25 @@
+<apex:page controller="VisualFormWizardController" tabStyle="Opportunity">
+        <apex:sectionHeader title="New Customer Opportunity" subtitle="Step 2 of 3" />
+        <apex:form >
+            <apex:pageBlock title="Opportunity Information">
+                <apex:facet name="footer">
+                    <apex:outputPanel >
+                        <apex:commandButton action="{!step1}" value="Previous" styleClass="btn" />
+                        <apex:commandButton action="{!step3}" value="Next" styleClass="btn" />
+                    </apex:outputPanel>
+                </apex:facet>
+                <apex:pageBlockSection title="Contact Information">
+                    <apex:panelGrid columns="2">
+                        <apex:outputText value="Manage People?" />
+                        <apex:outputText value="{!managePeople}" />
+                        <apex:outputLabel value="First Name" for="contactFirstName" />
+                        <apex:inputField id="contactFirstName" value="{!contact.firstName}" />
+                        <apex:outputLabel value="Last Name" for="contactLastName" />
+                        <apex:inputField id="contactLastName" value="{!contact.lastName}" />
+                        <apex:outputLabel value="Phone" for="contactPhone" />
+                        <apex:inputField id="contactPhone" value="{!contact.phone}" />
+                    </apex:panelGrid>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:form>
+    </apex:page>
