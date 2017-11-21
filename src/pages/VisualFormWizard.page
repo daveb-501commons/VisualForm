@@ -3,28 +3,21 @@
     <apex:form >
         <apex:pageBlock title="">
 
-            <apex:facet name="footer">
-                <apex:commandButton action="{!step2}" value="Next" styleClass="btn" />
-            </apex:facet>
-
-
-                <!-- <apex:panelGrid> tags organize data in the same way as
- a table. It places all child elements in successive cells,
- in left-to-right, top-to-bottom order -->
-
-                <!-- <apex:outputLabel> and <apex:inputField> tags can be 
- bound together with the for and id attribute values,
- respectively. -->
-
-                <apex:outputpanel id="plusimage">
-                    <apex:actionregion >
-					<apex:image url="{!URLFOR($Resource.VisualForm, 'PartnerFunnel1b.jpg')}" width="250" height="250">
-                        <apex:actionSupport event="onclick" action="{!step2}">
-							<apex:param name="{!managePeopleTrue}" value="{!managePeopleTrue}" assignTo="{!managePeople}"/>
-						</apex:actionSupport>
+            <apex:outputpanel >
+                <apex:actionregion >
+                    <apex:image url="{!URLFOR($Resource.VisualFormWizard, 'images/PartnerFunnel1a.jpg')}" width="462" height="408">
+                        <apex:actionSupport event="onclick" action="{!step2ManagePeople}" />
                     </apex:image>
-                    </apex:actionregion>
-                </apex:outputpanel>
+                </apex:actionregion>
+                <apex:actionregion >
+                    <apex:image url="{!URLFOR($Resource.VisualFormWizard, 'images/PartnerFunnel1b.jpg')}" width="462" height="408">
+                        <apex:actionSupport event="onclick" action="{!step2WorkDirectly}" />
+                    </apex:image>
+                </apex:actionregion>
+                <apex:outputText >I manage people who work directly with familites and caregivers</apex:outputText>
+                <apex:outputText >I work directly with families and caregivers.</apex:outputText>
+            </apex:outputpanel>
+            
         </apex:pageBlock>
     </apex:form>
 </apex:page>

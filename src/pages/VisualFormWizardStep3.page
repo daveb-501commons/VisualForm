@@ -1,23 +1,29 @@
 <apex:page controller="VisualFormWizardController" tabStyle="Contact">
-        <apex:sectionHeader title="New Customer Opportunity" subtitle="Step 3 of 3" />
+        <apex:sectionHeader title="Almost there!" subtitle="Tell us a little bit about yourself, so we know how to reach you." />
         <apex:form >
             <apex:pageBlock title="Confirmation">
+                
                 <apex:facet name="footer">
                     <apex:outputPanel >
-                        <apex:commandButton action="{!step2}" value="Previous" styleClass="btn" />
-                        <apex:commandButton action="{!save}" value="Save" styleClass="btn" />
+                        <apex:commandButton action="{!save}" image="{!URLFOR($Resource.VisualFormWizard, 'images/3of3.jpg')}" styleClass="btn" >
+                            <apex:param name="save" value="false" assignTo="{!saveContact}"/>
+                        </apex:commandButton>
                     </apex:outputPanel>
                 </apex:facet>
-                <apex:pageBlockSection title="Contact Information">
-                    <apex:panelGrid columns="2">
-                        <apex:outputText value="First Name" />
-                        <apex:outputText value="{!contact.firstName}" />
-                        <apex:outputText value="Last Name" />
-                        <apex:outputText value="{!contact.lastName}" />
-                        <apex:outputText value="Phone" />
-                        <apex:outputText value="{!contact.phone}" />
-                    </apex:panelGrid>
-                </apex:pageBlockSection>
+                
+                <apex:panelGrid columns="2">
+                    <apex:outputLabel value="What's your name?" for="contactName" />
+                    <apex:inputField id="contactName" value="{!contact.LastName}" />
+                    <apex:outputLabel value="What's your email address" for="contactEmail" />
+                    <apex:inputField id="contactEmail" value="{!contact.email}" />
+                    <apex:outputLabel value="What's your zipcode" for="contactAddress" />
+                    <apex:inputField id="contactAddress" value="{!contact.Title}" />
+                </apex:panelGrid>
+                
+                <apex:commandButton image="{!URLFOR($Resource.VisualFormWizard, 'images/continue.jpg')}" action="{!save}">
+                    <apex:param name="save" value="true" assignTo="{!saveContact}"/>
+                </apex:commandButton>
+                    
             </apex:pageBlock>
         </apex:form>
     </apex:page>

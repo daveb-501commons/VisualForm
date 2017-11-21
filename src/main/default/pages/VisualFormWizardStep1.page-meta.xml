@@ -3,5 +3,5 @@
     <apiVersion>41.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>VisualFormWizardStep2</label>
+    <label>VisualFormWizardStep1</label>
 </ApexPage>

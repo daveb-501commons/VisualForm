@@ -1,25 +1,30 @@
-<apex:page controller="VisualFormWizardController" tabStyle="Opportunity">
-        <apex:sectionHeader title="New Customer Opportunity" subtitle="Step 2 of 3" />
-        <apex:form >
-            <apex:pageBlock title="Opportunity Information">
-                <apex:facet name="footer">
-                    <apex:outputPanel >
-                        <apex:commandButton action="{!step1}" value="Previous" styleClass="btn" />
-                        <apex:commandButton action="{!step3}" value="Next" styleClass="btn" />
-                    </apex:outputPanel>
-                </apex:facet>
-                <apex:pageBlockSection title="Contact Information">
-                    <apex:panelGrid columns="2">
-                        <apex:outputText value="Manage People?" />
-                        <apex:outputText value="{!managePeople}" />
-                        <apex:outputLabel value="First Name" for="contactFirstName" />
-                        <apex:inputField id="contactFirstName" value="{!contact.firstName}" />
-                        <apex:outputLabel value="Last Name" for="contactLastName" />
-                        <apex:inputField id="contactLastName" value="{!contact.lastName}" />
-                        <apex:outputLabel value="Phone" for="contactPhone" />
-                        <apex:inputField id="contactPhone" value="{!contact.phone}" />
-                    </apex:panelGrid>
-                </apex:pageBlockSection>
-            </apex:pageBlock>
-        </apex:form>
-    </apex:page>
+<apex:page controller="VisualFormWizardController" tabStyle="Contact">
+    
+    <apex:sectionHeader title="How many families does your organization server?" subtitle="Select on a scale of 100 to 10,000" />
+    <apex:form >
+
+        <apex:pageBlock title="Opportunity Information">
+            
+            <apex:facet name="footer">
+                <apex:outputPanel >
+                    <apex:commandButton action="{!step4}" id="step4" image="{!URLFOR($Resource.VisualFormWizard, 'images/2of3.jpg')}" />
+                </apex:outputPanel>
+            </apex:facet>
+
+            <apex:panelGrid columns="1" id="panelGrid">
+
+                <apex:inputHidden id="scaleXClickValue" value="{!scaleXClick}" />
+                <apex:inputHidden id="scaleYClickValue" value="{!scaleYClick}" />
+	            <apex:image id="scaleImage" url="{!scaleImage}" onclick="UpdateImage(event.offsetX, event.offsetY); return false;" width="923" height="85" />
+
+                <apex:actionFunction name="UpdateImage" action="{!updateScale}" rerender="panelGrid">
+                    <apex:param name="p1" value="" assignTo="{!scaleXClick}" />
+                    <apex:param name="p2" value="" assignTo="{!scaleYClick}" />
+                </apex:actionFunction>
+                
+            </apex:panelGrid>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

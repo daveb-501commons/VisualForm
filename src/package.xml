@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>VisualForm</fullName>
+    <fullName>VisualFormWizard</fullName>
     <types>
-        <members>VisualFormController</members>
+        <members>VisualFormWizardController</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>VisualForm</members>
-        <members>VisualFormStep2</members>
-        <members>VisualFormStep3</members>
+        <members>VisualFormWizard</members>
+        <members>VisualFormWizardStep2</members>
+        <members>VisualFormWizardStep3</members>
         <name>ApexPage</name>
     </types>
     <types>
-        <members>VisualForm</members>
+        <members>VisualFormWizard</members>
         <name>StaticResource</name>
     </types>
     <version>41.0</version>

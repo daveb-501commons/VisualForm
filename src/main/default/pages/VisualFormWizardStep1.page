@@ -1,0 +1,24 @@
+<apex:page controller="VisualFormWizardController" tabStyle="Contact">
+    <apex:sectionHeader title="Great!" subtitle="Just 3 more questions to know how to serve you best." />
+    <apex:form >
+        
+        <apex:pageBlock title="Opportunity Information">
+            
+            <apex:facet name="footer">
+                <apex:outputPanel >
+                    <apex:commandButton action="{!step3}" id="step3" image="{!URLFOR($Resource.VisualFormWizard, 'images/1of3.jpg')}" />
+                </apex:outputPanel>
+            </apex:facet>
+            
+            <apex:pageBlockSection title="Contact Information">
+                <apex:panelGrid columns="2">
+                    <apex:outputLabel value="What is the name of the organization you are a part of?" for="contactOrganization"/>
+                    <apex:outputText value="Example: Community Center, Daycare" />
+                    <apex:inputField id="contactOrganization" value="{!account.Name}" />
+                </apex:panelGrid>
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>
