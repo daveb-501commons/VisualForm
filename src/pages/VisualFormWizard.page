@@ -1,23 +1,52 @@
-<apex:page controller="VisualFormWizardController" tabStyle="Contact">
-    <apex:sectionHeader title="" subtitle="What kind of work do you do?" />
-    <apex:form >
-        <apex:pageBlock title="">
+<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="true">
+    <apex:stylesheet value="{!URLFOR($Resource.VisualFormWizard, 'styles/custom.css')}"/>
+    <style type="text/css">
+		body {
+            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/Under_10k_Transparent.svg')});
+        	background-color: #f8f8f8;
+            background-repeat : no-repeat;
+            background-size: cover;
+        }        
+        .HeaderTextLocal {
+        	margin-top: 75px;
+        	margin-bottom: 75px;
+        	font-family: Arial;
+        	font-size: 36px;
+        	font-weight: bold;
+        	text-align: center;
+        	width: 100%;
+        }
+        
+        .DescriptionTextLocal {
+        	font-family: Arial;
+        	font-size: 20px;
+        	font-weight: normal;
+        	text-align: center;
+        	width: 100%;
+        }
+    </style>
 
-            <apex:outputpanel >
+	<div class="HeaderTextLocal">
+	    <apex:outputText Value="What kind of work do you do?"/>
+    </div>    
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection collapsible="false" columns="2">
+                
                 <apex:actionregion >
-                    <apex:image url="{!URLFOR($Resource.VisualFormWizard, 'images/PartnerFunnel1a.jpg')}" width="462" height="408">
+                    <apex:image url="{!URLFOR($Resource.VisualFormWizard, 'images/manager.svg')}" width="462" height="408">
                         <apex:actionSupport event="onclick" action="{!step2ManagePeople}" />
                     </apex:image>
                 </apex:actionregion>
                 <apex:actionregion >
-                    <apex:image url="{!URLFOR($Resource.VisualFormWizard, 'images/PartnerFunnel1b.jpg')}" width="462" height="408">
+                    <apex:image url="{!URLFOR($Resource.VisualFormWizard, 'images/directprovider.svg')}" width="462" height="408">
                         <apex:actionSupport event="onclick" action="{!step2WorkDirectly}" />
                     </apex:image>
                 </apex:actionregion>
-                <apex:outputText >I manage people who work directly with familites and caregivers</apex:outputText>
-                <apex:outputText >I work directly with families and caregivers.</apex:outputText>
-            </apex:outputpanel>
-            
-        </apex:pageBlock>
+
+                <apex:outputText styleClass="DescriptionTextLocal" Value="I manage people who work directly with familites and caregivers" />
+                <apex:outputText styleClass="DescriptionTextLocal" Value="I work directly with families and caregivers." />
+            </apex:pageBlockSection>
+	    </apex:pageBlock>
     </apex:form>
 </apex:page>
