@@ -1,52 +1,145 @@
-<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="true">
+<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="false">
     <apex:stylesheet value="{!URLFOR($Resource.VisualFormWizard, 'styles/custom.css')}"/>
     <style type="text/css">
 		body {
-            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/Under_10k_Transparent.svg')});
-        	background-color: #f8f8f8;
-            background-repeat : no-repeat;
-            background-size: cover;
-        }        
-        .HeaderTextLocal {
-        	margin-top: 75px;
-        	margin-bottom: 75px;
-        	font-family: Arial;
-        	font-size: 36px;
-        	font-weight: bold;
+            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/BackgroundPattern.svg')});
+        }  
+        
+        .TextHeaderLocal {
         	text-align: center;
-        	width: 100%;
+        	margin-top: 40px;
+        	margin-bottom: 40px;
+        	font-family: "Trebuchet MS", Helvetica, sans-serif;
+        	font-weight: 900;
+        	font-size: 30px;
+        	color: #47341F;
         }
         
-        .DescriptionTextLocal {
-        	font-family: Arial;
-        	font-size: 20px;
-        	font-weight: normal;
-        	text-align: center;
-        	width: 100%;
+        .TextDescriptionLocal {
+        	font-family: "Trebuchet MS", Helvetica, sans-serif;
+        	font-weight: 500;
+        	font-size: 30px;
+        	color: #47341F;
         }
+        
+        .TextInfoLocal {
+        	text-align: center;
+        	font-family: "Trebuchet MS", Helvetica, sans-serif;
+        	font-weight: 200;
+        	font-size: 14px;
+        	color: #47341F;
+        }
+        
+        .TableChoiceLocal {
+			width:500px;
+            height:670px;
+           	background-color: white;
+			color: white;
+        	border: 0px;
+        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+        }
+        
+        .ButtonDivLocal {
+        	display:none;
+        }
+        
+        .SkipTextLocal {
+        	font-family: "Trebuchet MS", Helvetica, sans-serif;
+        	font-weight: 500;
+        	font-size: 14px;
+        	color: #00B9B4;
+        	margin-left: 15px;
+        }
+        
+        .ButtonStyleLocal {
+        	margin-top: -35px;
+        	margin-left: 50px;
+        	width: 50px;
+        	height: 50px;
+        	align: right;
+        }
+        
+        .ButtonSkipDivLocal {
+        	margin-top: 25px;
+        	float: right;
+        }
+        
     </style>
 
-	<div class="HeaderTextLocal">
+    <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
+    <script>
+
+    var strManagePeople = "none";
+    var strWorkDirectly = "none";
+        
+    function fxManagePeople(object) {
+        $("[id$='imageManagePeople']").css("opacity", "1.0");
+        $("[id$='step2ManagePeople']").css("display", "block");
+
+        $("[id$='imageWorkDirectly']").css("opacity", "0.2");
+        $("[id$='step2WorkDirectly']").css("display", "none");
+    }
+    
+    function fxWorkDirectly(object) {
+        $("[id$='imageManagePeople']").css("opacity", "0.2");
+        $("[id$='step2ManagePeople']").css("display", "none");
+
+        $("[id$='imageWorkDirectly']").css("opacity", "1.0");
+        $("[id$='step2WorkDirectly']").css("display", "block");
+    }
+    
+    </script>
+    
+	<div class="TextHeaderLocal">
 	    <apex:outputText Value="What kind of work do you do?"/>
     </div>    
     <apex:form >
         <apex:pageBlock >
-            <apex:pageBlockSection collapsible="false" columns="2">
-                
-                <apex:actionregion >
-                    <apex:image url="{!URLFOR($Resource.VisualFormWizard, 'images/manager.svg')}" width="462" height="408">
-                        <apex:actionSupport event="onclick" action="{!step2ManagePeople}" />
-                    </apex:image>
-                </apex:actionregion>
-                <apex:actionregion >
-                    <apex:image url="{!URLFOR($Resource.VisualFormWizard, 'images/directprovider.svg')}" width="462" height="408">
-                        <apex:actionSupport event="onclick" action="{!step2WorkDirectly}" />
-                    </apex:image>
-                </apex:actionregion>
+            <table style="margin: 0px auto;"><tr><td>
+                <table class="TableChoiceLocal" id="imageManagePeople">
+                    <tr><td>
+                        <apex:image onclick="fxManagePeople(this);" url="{!URLFOR($Resource.VisualFormWizard, 'images/manager.svg')}" style="width:500px;" />
+                    </td></tr>
+                    <tr><td style="padding-left:32px;padding-top: 40px;height:32px">
+                        <apex:outputText styleClass="TextDescriptionLocal" Value="I manage people who work" />
+                    </td></tr>
+                    <tr><td style="padding-left:32px;height:32px">
+                        <apex:outputText styleClass="TextDescriptionLocal" Value="directly with familites and" />
+                    </td></tr>
+                    <tr><td style="padding-left:32px;padding-bottom:65px;height:32px">
+                        <apex:outputText styleClass="TextDescriptionLocal" Value="caregivers." />
+                    </td></tr>
+                </table>
+            </td><td style="padding-left:20px">
+                <table class="TableChoiceLocal" id="imageWorkDirectly">
+                    <tr align="center"><td>
+                        <apex:image onclick="fxWorkDirectly(this);" url="{!URLFOR($Resource.VisualFormWizard, 'images/directprovider.svg')}" style="width:500px" />
+                    </td></tr>
+                    <tr><td style="padding-left:32px;padding-top: 40px;height:32px">
+	                    <apex:outputText styleClass="TextDescriptionLocal" Value="I work directly with families and" />
+                    </td></tr>
+                    <tr><td style="padding-left:32px;padding-bottom:102px;height:32px">
+	                    <apex:outputText styleClass="TextDescriptionLocal" Value="caregivers." />
+                    </td></tr>
+                </table>
+        	</td></tr></table>
+            
+            <div class="ButtonDivLocal" id="step2ManagePeople">
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!step2ManagePeople}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:465px;top:-50px;width:30px;" />
+            </div>
 
-                <apex:outputText styleClass="DescriptionTextLocal" Value="I manage people who work directly with familites and caregivers" />
-                <apex:outputText styleClass="DescriptionTextLocal" Value="I work directly with families and caregivers." />
-            </apex:pageBlockSection>
+            <div class="ButtonDivLocal" id="step2WorkDirectly">
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!step2WorkDirectly}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:1000px;top:-50px;width:30px;" />
+            </div>
+            
+            <div class="ButtonSkipDivLocal">
+                <div>
+                    <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
+                </div>
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!finish}" id="skip" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+            </div>
+            
 	    </apex:pageBlock>
     </apex:form>
 </apex:page>
