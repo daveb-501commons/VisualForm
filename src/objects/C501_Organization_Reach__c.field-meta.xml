@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>C501_Organization_Reach__c</fullName>
+    <externalId>false</externalId>
+    <label>C501 Organization Reach</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Type or select an option</fullName>
+                <default>false</default>
+                <label>Type or select an option</label>
+            </value>
+            <value>
+                <fullName>Neighborhood</fullName>
+                <default>false</default>
+                <label>Neighborhood</label>
+            </value>
+            <value>
+                <fullName>Town</fullName>
+                <default>false</default>
+                <label>Town</label>
+            </value>
+            <value>
+                <fullName>City</fullName>
+                <default>false</default>
+                <label>City</label>
+            </value>
+            <value>
+                <fullName>County</fullName>
+                <default>false</default>
+                <label>County</label>
+            </value>
+            <value>
+                <fullName>Regional rural area</fullName>
+                <default>false</default>
+                <label>Regional rural area</label>
+            </value>
+            <value>
+                <fullName>Regional suburban area</fullName>
+                <default>false</default>
+                <label>Regional suburban area</label>
+            </value>
+            <value>
+                <fullName>Reservation or territory</fullName>
+                <default>false</default>
+                <label>Reservation or territory</label>
+            </value>
+            <value>
+                <fullName>State</fullName>
+                <default>false</default>
+                <label>State</label>
+            </value>
+            <value>
+                <fullName>Multi State</fullName>
+                <default>false</default>
+                <label>Multi State</label>
+            </value>
+            <value>
+                <fullName>National</fullName>
+                <default>false</default>
+                <label>National</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

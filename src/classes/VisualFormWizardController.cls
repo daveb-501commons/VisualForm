@@ -22,10 +22,9 @@ public with sharing class VisualFormWizardController {
         
         if(contact == null) {
             contact = new Contact();
-			contact.description = 'Please Describe Here';
             contact.LastName = 'John Doe';
             contact.Email = 'joinvroom@gmail.com';
-            contact.title = '12345';
+            contact.C501_Zipcode__c = '12345';
         } 
         
         return contact;
@@ -36,35 +35,62 @@ public with sharing class VisualFormWizardController {
         if(account == null) {
         	account = new Account();  
 			account.Name = 'Type your organization here';
+			account.C501_Organization_Reach__c = 'Type or select an option';
+            account.C501_Org_Language_Other__c = 'Type language here';
+			account.C501_Org_SizeOther__c = 'Please Describe Here';
         } 
         
         return account;
 	}
     
-   	public PageReference step1() {
+   	public PageReference start() {
         return Page.VisualFormWizard;
    	}
 
-   	public PageReference step2() {
-	    return Page.VisualFormWizardStep1;
-   	}
-
-   	public PageReference step2ManagePeople() {
+   	public PageReference managePeople() {
         managePeople = True;
-	    return step2();
+	    return getOrgName();
    	}
     
-   	public PageReference step2WorkDirectly() {
+   	public PageReference workDirectly() {
         managePeople = False;
-	    return step2();
+	    return getOrgName();
    	}
 
-   	public PageReference step3() {
-		return Page.VisualFormWizardStep2;
+   	public PageReference getOrgName() {
+	    return Page.C501_VisualFormWizard_OrgName;
    	}
 
-   	public PageReference step4() {
-		return Page.VisualFormWizardStep3;
+   	public PageReference getOrgNameNext() {
+        
+        if (managePeople) {
+            return getOrgReach();
+        }
+        
+	    return getOrgSize();
+   	}
+    
+   	public PageReference getOrgSize() {
+		return Page.C501_VisualFormWizard_OrgSize;
+   	}
+
+   	public PageReference getOrgSizeNext() {
+        
+        account.C501_Org_Size__c = scaleText;
+
+		return Page.C501_VisualFormWizard_ContactInfo;
+   	}
+    
+   	public PageReference getOrgLanguage() {
+		return Page.C501_VisualFormWizard_OrgLanguage;
+   	}
+
+   	public PageReference getOrgReach() {
+		return Page.C501_VisualFormWizard_OrgReach;
+   	}
+    
+   	public PageReference getContactInfo() {
+		return Page.C501_VisualFormWizard_ContactInfo;
    	}
     
     public void updateScale() {
@@ -146,15 +172,15 @@ public with sharing class VisualFormWizardController {
 
         if (contact.LastName == 'John Doe' || String.isBlank(contact.LastName)) {
             formError = 'Invalid name';
-            return step4();
+            return getContactInfo();
         }
         if (contact.Email == 'joinvroom@gmail.com' || !validateEmail(contact.Email)) {
             formError = 'Invalid email address';
-            return step4();
+            return getContactInfo();
         }
-        if (contact.title == '12345' || !Pattern.matches('^[0-9]{5}(?:-[0-9]{4})?$', contact.title)) {
+        if (contact.C501_Zipcode__c == '12345' || !Pattern.matches('^[0-9]{5}(?:-[0-9]{4})?$', contact.C501_Zipcode__c)) {
             formError = 'Invalid zipcode';
-            return step4();
+            return getContactInfo();
         }
 
         String name = contact.LastName;
@@ -167,13 +193,22 @@ public with sharing class VisualFormWizardController {
         // Check for existing contact
         List<Contact> existingContactQuery = [SELECT Account.Name
                                        FROM Contact
-                                       WHERE Email=:contact.Email
+                                       WHERE Email=:contact.Email AND LastName=:contact.LastName
                                        LIMIT 1];
         if (!existingContactQuery.isEmpty()) {
             existingContactQuery[0].FirstName = contact.FirstName;
             existingContactQuery[0].LastName = contact.LastName;
-            existingContactQuery[0].Title = contact.Title;
+            existingContactQuery[0].C501_Zipcode__c = contact.C501_Zipcode__c;
             existingContactQuery[0].Account.Name = account.Name;
+            existingContactQuery[0].Account.C501_Organization_Reach__c = account.C501_Organization_Reach__c;
+            existingContactQuery[0].Account.C501_Org_BulkPrinting__c = account.C501_Org_BulkPrinting__c;
+            existingContactQuery[0].Account.C501_Org_Language_English__c = account.C501_Org_Language_English__c;
+            existingContactQuery[0].Account.C501_Org_Language_Other__c = account.C501_Org_Language_Other__c;
+            existingContactQuery[0].Account.C501_Org_Language_Russian__c = account.C501_Org_Language_Russian__c;
+            existingContactQuery[0].Account.C501_Org_Language_Spanish__c = account.C501_Org_Language_Spanish__c;
+            existingContactQuery[0].Account.C501_Org_Language_Vietnamese__c = account.C501_Org_Language_Vietnamese__c;
+            existingContactQuery[0].Account.C501_Org_Size__c = account.C501_Org_Size__c;
+            existingContactQuery[0].Account.C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
             
             update existingContactQuery[0];
             update existingContactQuery[0].Account;

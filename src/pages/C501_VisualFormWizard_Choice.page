@@ -1,31 +1,42 @@
 <apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="false">
     <apex:stylesheet value="{!URLFOR($Resource.VisualFormWizard, 'styles/custom.css')}"/>
     <style type="text/css">
-		body {
+
+        @font-face {
+            font-family: Omnes-Medium;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
+        }
+
+        @font-face {
+            font-family: Omnes-Regular;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
+        }
+
+        @font-face {
+            font-family: Omnes-Semibold;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
+        }
+        
+        body {
             background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/BackgroundPattern.svg')});
         }  
-        
+
         .TextHeaderLocal {
         	text-align: center;
-        	margin-top: 40px;
-        	margin-bottom: 40px;
-        	font-family: "Trebuchet MS", Helvetica, sans-serif;
-        	font-weight: 900;
+        	font-family: Omnes-Semibold, "Trebuchet MS", Helvetica, sans-serif;
         	font-size: 30px;
         	color: #47341F;
         }
         
         .TextDescriptionLocal {
-        	font-family: "Trebuchet MS", Helvetica, sans-serif;
-        	font-weight: 500;
+        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
         	font-size: 30px;
         	color: #47341F;
         }
         
         .TextInfoLocal {
         	text-align: center;
-        	font-family: "Trebuchet MS", Helvetica, sans-serif;
-        	font-weight: 200;
+        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
         	font-size: 14px;
         	color: #47341F;
         }
@@ -45,7 +56,7 @@
         }
         
         .SkipTextLocal {
-        	font-family: "Trebuchet MS", Helvetica, sans-serif;
+        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
         	font-weight: 500;
         	font-size: 14px;
         	color: #00B9B4;
@@ -64,6 +75,14 @@
         	margin-top: 25px;
         	float: right;
         }
+
+        .InputLabelLocal {
+			background-color: #f8f8f8;
+        	color:#DDD1BE;
+          	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	text-align: center;
+        	font-size: 30px;
+        }
         
     </style>
 
@@ -75,23 +94,23 @@
         
     function fxManagePeople(object) {
         $("[id$='imageManagePeople']").css("opacity", "1.0");
-        $("[id$='step2ManagePeople']").css("display", "block");
+        $("[id$='managePeople']").css("display", "block");
 
         $("[id$='imageWorkDirectly']").css("opacity", "0.2");
-        $("[id$='step2WorkDirectly']").css("display", "none");
+        $("[id$='workDirectly']").css("display", "none");
     }
     
     function fxWorkDirectly(object) {
         $("[id$='imageManagePeople']").css("opacity", "0.2");
-        $("[id$='step2ManagePeople']").css("display", "none");
+        $("[id$='managePeople']").css("display", "none");
 
         $("[id$='imageWorkDirectly']").css("opacity", "1.0");
-        $("[id$='step2WorkDirectly']").css("display", "block");
+        $("[id$='workDirectly']").css("display", "block");
     }
     
     </script>
     
-	<div class="TextHeaderLocal">
+	<div class="TextHeaderLocal" style="margin-top:40px;margin-bottom:40px;">
 	    <apex:outputText Value="What kind of work do you do?"/>
     </div>    
     <apex:form >
@@ -125,12 +144,12 @@
                 </table>
         	</td></tr></table>
             
-            <div class="ButtonDivLocal" id="step2ManagePeople">
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!step2ManagePeople}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:465px;top:-50px;width:30px;" />
+            <div class="ButtonDivLocal" id="managePeople">
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!managePeople}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:410px;top:-40px;width:30px;" />
             </div>
 
-            <div class="ButtonDivLocal" id="step2WorkDirectly">
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!step2WorkDirectly}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:1000px;top:-50px;width:30px;" />
+            <div class="ButtonDivLocal" id="workDirectly">
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!workDirectly}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:945px;top:-40px;width:30px;" />
             </div>
             
             <div class="ButtonSkipDivLocal">

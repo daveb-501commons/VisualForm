@@ -1,0 +1,251 @@
+<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="false">
+    <style type="text/css">
+
+        @font-face {
+            font-family: Omnes-Medium;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
+        }
+
+        @font-face {
+            font-family: Omnes-Regular;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
+        }
+
+        @font-face {
+            font-family: Omnes-Semibold;
+        	font-weight: bold;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
+        }
+        
+        body {
+            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/BackgroundPattern.svg')});
+        }  
+
+        .TextHeaderLocal {
+        	text-align: center;
+        	font-family: Omnes-Semibold, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 30px;
+        	color: #47341F;
+        }
+        
+        .TextDescriptionLocal {
+        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 30px;
+        	color: #47341F;
+        }
+        
+        .TextInfoLocal {
+        	text-align: center;
+        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 14px;
+        	color: #47341F;
+        }
+        
+        .TableChoiceLocal {
+			width:500px;
+            height:670px;
+           	background-color: white;
+			color: white;
+        	border: 0px;
+        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+        }
+
+        .ButtonDivLocal {
+        	display:none;
+        }
+        
+        .ButtonStyleLocal {
+        	margin-top: -35px;
+        	margin-left: 50px;
+        	width: 50px;
+        	height: 50px;
+        	align: right;
+        }
+
+        .SkipTextLocal {
+        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 14px;
+        	color: #00B9B4;
+        	margin-left: 15px;
+        }
+        
+        .ButtonSkipDivLocal {
+        	margin-top: 25px;
+        	float: right;
+        }
+        
+        .InputLabelLocal {
+			background-color: white;
+        	color:#DDD1BE;
+          	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	text-align: center;
+        	font-size: 30px;
+        	border: 0px;
+        }
+
+        .InputLabelSmallLocal {
+			background-color: white;
+        	color:#00B9B4;
+          	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+        	text-align: center;
+        	font-size: 14px;
+        	border: 0px;
+        }
+        
+        .InputCheckboxLocal {
+			background-color: white;
+        	color:#47341F;
+          	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	text-align: center;
+        	font-size: 20px;
+        	border: 1px;
+        }
+        
+        .TableInputLabelLocal {
+			width:650px;
+            height:175px;
+           	background-color: white;
+			color: white;
+        	border: 0px;
+        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+        }
+
+        .divScale {
+    		background-color: white;
+		}
+
+        .ScaleTextLocal {
+        	margin-top: 5px;
+        	margin-bottom: 25px;
+        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 24px;
+        	font-weight: bold;
+        	color: orange;
+        	text-align: center;
+        	width: 100%;
+        }
+
+        .ScaleLinkLocal {
+        	margin-top: 25px;
+        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 12px;
+        	font-weight: bold;
+        	color: gray;
+        	text-align: center;
+        	width: 100%;
+        }
+        
+        .HeaderScaleLocal {
+        	margin-top: 50px;
+        	margin-bottom: 10px;
+        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 36px;
+        	font-weight: bold;
+        	text-align: center;
+        	width: 100%;
+        }
+        
+        .DescriptionScaleLocal {
+        	margin-bottom: 50px;
+        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 14px;
+        	font-weight: normal;
+        	text-align: center;
+        	width: 100%;
+        }
+        
+    </style>
+    
+    <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
+
+	<div class="TextHeaderLocal" style="margin-top: 120px;">
+	    <apex:outputText Value="How many families does your organization serve?"/>
+    </div>    
+	<div class="TextInfoLocal" style="margin-top: 10px;margin-bottom:40px;">
+	    <apex:outputText styleClass="DescriptionTextLocal" Value="Select on a scale of 100 to 10,000"/>
+    </div>    
+
+    <apex:form >
+
+        <apex:pageBlock id="pageBlockArea" >
+                    
+                    <script type="text/javascript">
+                    function setupField(field) {
+                        
+                        if (field.value == "Please Describe Here") {
+
+                            field.style.color = "black";
+                            field.style.textDecoration = "";
+                        	field.value = "";
+                        }
+                        
+                        $("[id$='NextStep']").css("display", "block");
+                    }
+                    </script>
+
+            <table style="margin: 0px auto;" class="TableInputLabelLocal">
+                <tr><td style="padding-left: 69px;padding-top:60px">
+                    <apex:variable var="peopleVar" value="{!scalePeople}"/>
+                    
+	                <div style="width:100%">
+		                <div style="width: 275px; margin: 0 auto;">
+		                    <apex:image id="scalePeople" style="height:200px;width:200px;" url="{!URLFOR($Resource.VisualFormWizard, peopleVar)}" onclick="UpdateImage(event.offsetX, event.offsetY); return false;" >
+                                <apex:actionSupport event="onclick" action="{!getOrgSize}" />
+                            </apex:image>
+                        </div>
+                    </div>
+                    
+                    </td></tr>                
+                
+                <tr><td>
+                    <div class="ScaleTextLocal">
+                        <apex:outputText Value="{!scaleText}"/>
+                    </div>
+                    </td></tr>
+                
+                <tr><td>
+                    <apex:variable var="imageVar" value="{!scaleImage}"/>
+                    <apex:image id="scaleImage" style="width: 800px;margin-left: 25px;margin-right: 25px" url="{!URLFOR($Resource.VisualFormWizard, imageVar)}" onclick="UpdateImage(event.offsetX, event.offsetY); return false;" >
+                        <apex:actionSupport event="onclick" action="{!getOrgSize}" />
+                    </apex:image>
+                    </td></tr>
+                
+                <tr><td style="padding-bottom:40px;padding-top:30px;">
+                    <div style="width:100%">
+                        <div style="width: 150px; margin: 0 auto;">
+                            <apex:pageBlockSection >
+                                <apex:pageBlockSectionItem >
+			                        <apex:outputText styleClass="ScaleLinkLocal" Value="Other? "/>
+                                    <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabelSmallLocal" style="width:150px" id="contactOrganization" value="{!account.C501_Org_SizeOther__c}" />
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                        </div>
+                    </div>
+                    </td></tr>
+                
+            </table>
+        
+            <apex:inputHidden id="scaleXClickValue" value="{!scaleXClick}" />
+            <apex:inputHidden id="scaleYClickValue" value="{!scaleYClick}" />
+            <apex:actionFunction name="UpdateImage" action="{!updateScale}" reRender="pageBlockArea">
+                <apex:param name="p1" value="" assignTo="{!scaleXClick}" />
+                <apex:param name="p2" value="" assignTo="{!scaleYClick}" />
+            </apex:actionFunction>
+                
+            <div class="ButtonDivLocal" style="display:block;" id="NextStep">
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgSizeNext}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:850px;top:-40px;width:30px;" />
+            </div>
+            
+            <div class="ButtonSkipDivLocal">
+                <div>
+                    <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
+                </div>
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!finish}" id="skip" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+            </div>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

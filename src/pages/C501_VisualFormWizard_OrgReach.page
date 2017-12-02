@@ -1,0 +1,169 @@
+<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="false">
+    
+    <style type="text/css">
+
+        @font-face {
+            font-family: Omnes-Medium;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
+        }
+
+        @font-face {
+            font-family: Omnes-Regular;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
+        }
+
+        @font-face {
+            font-family: Omnes-Semibold;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
+        }
+        
+        body {
+            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/BackgroundPattern.svg')});
+        }  
+
+        .TextHeaderLocal {
+        	text-align: center;
+        	font-family: Omnes-Semibold, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 30px;
+        	color: #47341F;
+        }
+        
+        .TextDescriptionLocal {
+        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 30px;
+        	color: #47341F;
+        }
+        
+        .TextInfoLocal {
+        	text-align: center;
+        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 14px;
+        	color: #47341F;
+        }
+        
+        .TableChoiceLocal {
+			width:500px;
+            height:670px;
+           	background-color: white;
+			color: white;
+        	border: 0px;
+        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+        }
+
+        .ButtonDivLocal {
+        	display:none;
+        }
+        
+        .ButtonStyleLocal {
+        	margin-top: -35px;
+        	margin-left: 50px;
+        	width: 50px;
+        	height: 50px;
+        	align: right;
+        }
+
+        .SkipTextLocal {
+        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	font-weight: 500;
+        	font-size: 14px;
+        	color: #00B9B4;
+        	margin-left: 15px;
+        }
+        
+        .ButtonSkipDivLocal {
+        	margin-top: 25px;
+        	float: right;
+        }
+        
+        .InputLabelLocal {
+			background-color: white;
+        	color:#DDD1BE;
+          	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	text-align: center;
+        	font-size: 30px;
+        	border: 0px;
+        }
+
+        .InputCheckboxLocal {
+			background-color: white;
+        	color:#47341F;
+          	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	text-align: center;
+        	font-size: 20px;
+        	border: 1px;
+        }
+        
+        .TableInputLabelLocal {
+			width:650px;
+            height:175px;
+           	background-color: white;
+			color: white;
+        	border: 0px;
+        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+        }
+        
+    </style>
+    
+    <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
+
+	<div class="TextHeaderLocal" style="margin-top: 160px;margin-bottom:10px;">
+	    <apex:outputText Value="What is the scale of your organization's reach?"/>
+    </div>    
+	<div class="TextInfoLocal" style="margin-bottom:40px;">
+	    <apex:outputText Value="Smaller, like a neighborhood? Or larger, like the whole country?"/>
+    </div>    
+    
+    <apex:form >
+        
+        <apex:pageBlock >
+            
+            <div style="width:100%">
+                <div style="width: 650px; margin: 0 auto;">
+                    
+                    <script type="text/javascript">
+                    function setupField(field) {
+                        
+                        if (field.value == "Type or select an option") {
+                            field.style.color = "black";
+                            field.style.textDecoration = "";
+                        	field.value = "";
+                            $("[id$='NextStep']").css("display", "block");
+                        }
+                    }
+                    </script>
+
+                    <table class="TableInputLabelLocal">
+                        <tr><td style="padding-left:69px;">
+                            <apex:pageBlockSection >
+                                <apex:pageBlockSectionItem >
+                                    <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabelLocal" style="margin-left: 90px;margin-top: 40px;width: 350px; height: 40px;" value="{!account.C501_Organization_Reach__c}" />
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                            <hr style="margin-left:0px;width:512px;height:2px;color:#47341F;background-color:#47341F;"/>
+                        </td></tr>
+                        <tr><td style="padding-left:69px;">
+	                        <apex:inputField style="width:20px;height:20px;margin-left:170px;" styleClass="InputCheckboxLocal" value="{!account.C501_Org_BulkPrinting__c}" />
+		                    <apex:outputText style="margin-left: 10px;" styleClass="InputCheckboxLocal" Value="Pricing in bulk?" />
+                        </td></tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="ButtonDivLocal" id="NextStep">
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgLanguage}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:750px;top:-68px;width:30px;" />
+            </div>
+            
+            <div class="ButtonSkipDivLocal">
+                <div>
+                    <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
+                </div>
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!finish}" id="skip" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+            </div>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

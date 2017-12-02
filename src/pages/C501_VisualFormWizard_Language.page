@@ -1,0 +1,127 @@
+<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="false">
+    <apex:stylesheet value="{!URLFOR($Resource.VisualFormWizard, 'styles/custom.css')}"/>
+    <style type="text/css">
+
+        @font-face {
+            font-family: Omnes-Medium;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
+        }
+
+        @font-face {
+            font-family: Omnes-Regular;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
+        }
+
+        @font-face {
+            font-family: Omnes-Semibold;
+        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
+        }
+        
+        body {
+            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/BackgroundPattern.svg')});
+        }  
+
+        .TextHeaderLocal {
+        	text-align: center;
+        	margin-top: 40px;
+        	margin-bottom: 40px;
+        	font-family: Omnes-Semibold, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 30px;
+        	color: #47341F;
+        }
+        
+        .TextDescriptionLocal {
+        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 30px;
+        	color: #47341F;
+        }
+        
+        .TextInfoLocal {
+        	text-align: center;
+        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+        	font-size: 14px;
+        	color: #47341F;
+        }
+        
+        .TableChoiceLocal {
+			width:500px;
+            height:670px;
+           	background-color: white;
+			color: white;
+        	border: 0px;
+        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+        }
+        
+        .ButtonDivLocal {
+        	display:none;
+        }
+        
+        .SkipTextLocal {
+        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+        	font-weight: 500;
+        	font-size: 14px;
+        	color: #00B9B4;
+        	margin-left: 15px;
+        }
+        
+        .ButtonStyleLocal {
+        	margin-top: -35px;
+        	margin-left: 50px;
+        	width: 50px;
+        	height: 50px;
+        	align: right;
+        }
+        
+        .ButtonSkipDivLocal {
+        	margin-top: 25px;
+        	float: right;
+        }
+        
+    </style>
+
+	<div class="TextHeaderLocal">
+	    <apex:outputText Value="What languages are a priority for your community?"/>
+    </div>    
+	<div class="TextInfoLocal">
+	    <apex:outputText Value="Smaller Print - Waiting on text from Fuzzco"/>
+    </div>    
+    <apex:form >
+        <apex:pageBlock >
+
+            <div style="width:100%">
+                <div style="width: 512px; margin: 0 auto;">
+                    
+                    <script type="text/javascript">
+                    function setupField(field) {
+                        field.style.color = "black";
+                        field.style.textDecoration = "";
+                        
+                        if (field.value == "Type language here") {
+                        	field.value = "";
+                        }
+                    }
+                    </script>
+                    
+                    <apex:pageBlockSection >
+                        <apex:pageBlockSectionItem >
+	                        <apex:inputField onfocus="setupField(this);return false" style="text-decoration: underline;background-color: #f8f8f8;color:lightgrey;text-align: center;width: 512px; height: 128px;font-size: 30px" value="{!account.C501_Org_Language_Other__c}" />
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                </div>
+            </div>
+            
+            <div class="ButtonDivLocal" id="language">
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getLanguage}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:410px;top:-40px;width:30px;" />
+            </div>
+
+            <div class="ButtonSkipDivLocal">
+                <div>
+                    <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
+                </div>
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!finish}" id="skip" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+            </div>
+            
+	    </apex:pageBlock>
+    </apex:form>
+</apex:page>
