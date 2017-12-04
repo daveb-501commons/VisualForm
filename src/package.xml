@@ -2,18 +2,41 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>VisualFormWizard</fullName>
     <types>
-        <members>VisualFormWizardController</members>
+        <members>C501_VisualFormWizard_Controller</members>
+        <members>C501_VisualFormWizard_ControllerTests</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>VisualFormWizard</members>
-        <members>VisualFormWizardStep1</members>
-        <members>VisualFormWizardStep2</members>
-        <members>VisualFormWizardStep3</members>
+        <members>C501_VisualFormWizard_Choice</members>
+        <members>C501_VisualFormWizard_ContactInfo</members>
+        <members>C501_VisualFormWizard_OrgLanguage</members>
+        <members>C501_VisualFormWizard_OrgName</members>
+        <members>C501_VisualFormWizard_OrgReach</members>
+        <members>C501_VisualFormWizard_OrgSize</members>
         <name>ApexPage</name>
     </types>
     <types>
-        <members>VisualFormWizard</members>
+        <members>Account.C501_Org_BulkPrinting__c</members>
+        <members>Account.C501_Org_Language_English__c</members>
+        <members>Account.C501_Org_Language_Other__c</members>
+        <members>Account.C501_Org_Language_Russian__c</members>
+        <members>Account.C501_Org_Language_Spanish__c</members>
+        <members>Account.C501_Org_Language_Vietnamese__c</members>
+        <members>Account.C501_Org_SizeOther__c</members>
+        <members>Account.C501_Org_Size__c</members>
+        <members>Account.C501_Organization_Reach__c</members>
+        <members>C501_VFW_Settings__c.C501_VFW_Setting_Choice1_Redirect__c</members>
+        <members>C501_VFW_Settings__c.C501_VFW_Setting_Choice2_Redirect__c</members>
+        <members>Contact.C501_VFW_Managed__c</members>
+        <members>Contact.C501_Zipcode__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>C501_VFW_Settings__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>C501_VisualFormWizard</members>
         <name>StaticResource</name>
     </types>
     <version>41.0</version>

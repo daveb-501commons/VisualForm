@@ -1,24 +1,24 @@
-<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="false">
-    <apex:stylesheet value="{!URLFOR($Resource.VisualFormWizard, 'styles/custom.css')}"/>
+<apex:page controller="C501_VisualFormWizard_Controller" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
+    <apex:stylesheet value="{!URLFOR($Resource.C501_VisualFormWizard, 'styles/custom.css')}"/>
     <style type="text/css">
 
         @font-face {
             font-family: Omnes-Medium;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
         }
 
         @font-face {
             font-family: Omnes-Regular;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
         }
 
         @font-face {
             font-family: Omnes-Semibold;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
         }
         
         body {
-            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/BackgroundPattern.svg')});
+            background-image : url({!URLFOR($Resource.C501_VisualFormWizard, 'images/BackgroundPattern.svg')});
         }  
 
         .TextHeaderLocal {
@@ -118,7 +118,7 @@
             <table style="margin: 0px auto;"><tr><td>
                 <table class="TableChoiceLocal" id="imageManagePeople">
                     <tr><td>
-                        <apex:image onclick="fxManagePeople(this);" url="{!URLFOR($Resource.VisualFormWizard, 'images/manager.svg')}" style="width:500px;" />
+                        <apex:image onclick="fxManagePeople(this);" url="{!URLFOR($Resource.C501_VisualFormWizard, 'images/manager.svg')}" style="width:500px;" />
                     </td></tr>
                     <tr><td style="padding-left:32px;padding-top: 40px;height:32px">
                         <apex:outputText styleClass="TextDescriptionLocal" Value="I manage people who work" />
@@ -126,39 +126,34 @@
                     <tr><td style="padding-left:32px;height:32px">
                         <apex:outputText styleClass="TextDescriptionLocal" Value="directly with familites and" />
                     </td></tr>
-                    <tr><td style="padding-left:32px;padding-bottom:65px;height:32px">
+                    <tr><td style="padding-left:32px;padding-bottom:30px;height:32px">
                         <apex:outputText styleClass="TextDescriptionLocal" Value="caregivers." />
+                    </td></tr>
+                    <tr><td style="float:right;margin-right:30px;">
+                        <div class="ButtonDivLocal" id="managePeople">
+                            <apex:commandButton styleClass="ButtonStyleLocal" action="{!managePeople}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;" />
+                        </div>
                     </td></tr>
                 </table>
             </td><td style="padding-left:20px">
                 <table class="TableChoiceLocal" id="imageWorkDirectly">
                     <tr align="center"><td>
-                        <apex:image onclick="fxWorkDirectly(this);" url="{!URLFOR($Resource.VisualFormWizard, 'images/directprovider.svg')}" style="width:500px" />
+                        <apex:image onclick="fxWorkDirectly(this);" url="{!URLFOR($Resource.C501_VisualFormWizard, 'images/directprovider.svg')}" style="width:500px" />
                     </td></tr>
                     <tr><td style="padding-left:32px;padding-top: 40px;height:32px">
 	                    <apex:outputText styleClass="TextDescriptionLocal" Value="I work directly with families and" />
                     </td></tr>
-                    <tr><td style="padding-left:32px;padding-bottom:102px;height:32px">
+                    <tr><td style="padding-left:32px;padding-bottom:60px;height:32px">
 	                    <apex:outputText styleClass="TextDescriptionLocal" Value="caregivers." />
+                    </td></tr>
+                    <tr><td style="float:right;margin-right:30px;">
+                        <div class="ButtonDivLocal" id="workDirectly">
+                            <apex:commandButton styleClass="ButtonStyleLocal" action="{!workDirectly}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;" />
+                        </div>
                     </td></tr>
                 </table>
         	</td></tr></table>
-            
-            <div class="ButtonDivLocal" id="managePeople">
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!managePeople}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:410px;top:-40px;width:30px;" />
-            </div>
-
-            <div class="ButtonDivLocal" id="workDirectly">
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!workDirectly}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:945px;top:-40px;width:30px;" />
-            </div>
-            
-            <div class="ButtonSkipDivLocal">
-                <div>
-                    <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
-                </div>
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!finish}" id="skip" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
-            </div>
-            
+                        
 	    </apex:pageBlock>
     </apex:form>
 </apex:page>

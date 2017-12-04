@@ -1,24 +1,24 @@
-<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="false">
+<apex:page controller="C501_VisualFormWizard_Controller" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
     <style type="text/css">
 
         @font-face {
             font-family: Omnes-Medium;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
         }
 
         @font-face {
             font-family: Omnes-Regular;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
         }
 
         @font-face {
             font-family: Omnes-Semibold;
         	font-weight: bold;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
         }
         
         body {
-            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/BackgroundPattern.svg')});
+            background-image : url({!URLFOR($Resource.C501_VisualFormWizard, 'images/BackgroundPattern.svg')});
         }  
 
         .TextHeaderLocal {
@@ -191,7 +191,7 @@
                     
 	                <div style="width:100%">
 		                <div style="width: 275px; margin: 0 auto;">
-		                    <apex:image id="scalePeople" style="height:200px;width:200px;" url="{!URLFOR($Resource.VisualFormWizard, peopleVar)}" onclick="UpdateImage(event.offsetX, event.offsetY); return false;" >
+		                    <apex:image id="scalePeople" style="height:200px;width:200px;" url="{!URLFOR($Resource.C501_VisualFormWizard, peopleVar)}" onclick="UpdateImage(event.offsetX, event.offsetY); return false;" >
                                 <apex:actionSupport event="onclick" action="{!getOrgSize}" />
                             </apex:image>
                         </div>
@@ -207,7 +207,7 @@
                 
                 <tr><td>
                     <apex:variable var="imageVar" value="{!scaleImage}"/>
-                    <apex:image id="scaleImage" style="width: 800px;margin-left: 25px;margin-right: 25px" url="{!URLFOR($Resource.VisualFormWizard, imageVar)}" onclick="UpdateImage(event.offsetX, event.offsetY); return false;" >
+                    <apex:image id="scaleImage" style="width: 800px;margin-left: 25px;margin-right: 25px" url="{!URLFOR($Resource.C501_VisualFormWizard, imageVar)}" onclick="UpdateImage(event.offsetX, event.offsetY); return false;" >
                         <apex:actionSupport event="onclick" action="{!getOrgSize}" />
                     </apex:image>
                     </td></tr>
@@ -235,14 +235,14 @@
             </apex:actionFunction>
                 
             <div class="ButtonDivLocal" style="display:block;" id="NextStep">
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgSizeNext}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:850px;top:-40px;width:30px;" />
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgSizeNext}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:990px;top:-40px;width:30px;" />
             </div>
             
             <div class="ButtonSkipDivLocal">
                 <div>
                     <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
                 </div>
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!finish}" id="skip" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgSizeNext}" id="skip" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
             </div>
             
         </apex:pageBlock>

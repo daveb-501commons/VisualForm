@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>C501_VFW_Managed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>C501 Visual Form Wizard Managed Field</description>
+        <externalId>false</externalId>
+        <label>C501_VFW_Managed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>C501_Zipcode__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_Zipcode</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

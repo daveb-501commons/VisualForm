@@ -1,25 +1,25 @@
-<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="false">
+<apex:page controller="C501_VisualFormWizard_Controller" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
     
     <style type="text/css">
 
         @font-face {
             font-family: Omnes-Medium;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
         }
 
         @font-face {
             font-family: Omnes-Regular;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
         }
 
         @font-face {
             font-family: Omnes-Semibold;
         	font-weight: bold;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
         }
         
         body {
-            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/BackgroundPattern.svg')});
+            background-image : url({!URLFOR($Resource.C501_VisualFormWizard, 'images/BackgroundPattern.svg')});
         }  
 
         .TextHeaderLocal {
@@ -172,7 +172,7 @@
                     <script type="text/javascript">
                     function setupField(field) {
                         
-                        if (field.value == "John Doe" || field.value == "joinvroom@gmail.com" || field.value == "12345") {
+                        if (field.value == "John Doe" || field.value == "youremail@domain.com" || field.value == "12345") {
 
                             field.style.color = "black";
                             field.style.textDecoration = "";
@@ -237,7 +237,7 @@
                     </table>
     
                     <div class="ButtonDivLocal" id="NextStep">
-                        <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyleLocal" action="{!save}" id="save" image="{!URLFOR($Resource.VisualFormWizard, 'images/Continue_Button.svg')}" />
+                        <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyleLocal" action="{!save}" id="save" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Continue_Button.svg')}" />
                     </div>
     
                 </div>
@@ -247,7 +247,7 @@
                 <div>
                     <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
                 </div>
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!finish}" id="skip" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!finish}" id="skip" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
             </div>
             
         </apex:pageBlock>

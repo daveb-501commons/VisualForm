@@ -1,24 +1,24 @@
-<apex:page controller="VisualFormWizardController" tabStyle="Contact" standardStylesheets="false">
+<apex:page controller="C501_VisualFormWizard_Controller" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
     
     <style type="text/css">
 
         @font-face {
             font-family: Omnes-Medium;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
         }
 
         @font-face {
             font-family: Omnes-Regular;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
         }
 
         @font-face {
             font-family: Omnes-Semibold;
-        	src: url({!URLFOR($Resource.VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
+        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
         }
         
         body {
-            background-image : url({!URLFOR($Resource.VisualFormWizard, 'images/BackgroundPattern.svg')});
+            background-image : url({!URLFOR($Resource.C501_VisualFormWizard, 'images/BackgroundPattern.svg')});
         }  
 
         .TextHeaderLocal {
@@ -135,27 +135,30 @@
                     </script>
 
                     <table class="TableInputLabelLocal">
-                        <tr><td style="padding-left:69px;">
-                            <apex:pageBlockSection >
-                                <apex:pageBlockSectionItem >
-                                    <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabelLocal" style="margin-top: 40px;width: 512px; height: 40px;" id="contactOrganization" value="{!account.Name}" />
-                                </apex:pageBlockSectionItem>
-                            </apex:pageBlockSection>
-                            <hr style="margin-left:0px;width:512px;height:2px;color:#47341F;background-color:#47341F;"/>
-                        </td></tr>
+                        <tr>
+                            <td style="padding-left:69px;">
+                                <apex:pageBlockSection >
+                                    <apex:pageBlockSectionItem >
+                                        <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabelLocal" style="margin-top: 40px;width: 512px; height: 40px;" id="contactOrganization" value="{!account.Name}" />
+                                    </apex:pageBlockSectionItem>
+                                </apex:pageBlockSection>
+                                <hr style="margin-left:0px;width:512px;height:2px;color:#47341F;background-color:#47341F;"/>
+                            </td>
+                            <td style="padding-top:48px;position:relative;left:-50px;">
+                                <div class="ButtonDivLocal" id="NextStep">
+                                    <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgNameNext}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;" />
+                                </div>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
-            
-            <div class="ButtonDivLocal" id="NextStep">
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgNameNext}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:750px;top:-68px;width:30px;" />
-            </div>
-            
+                        
             <div class="ButtonSkipDivLocal">
                 <div>
                     <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
                 </div>
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!finish}" id="skip" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgNameNext}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
             </div>
             
         </apex:pageBlock>

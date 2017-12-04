@@ -1,4 +1,4 @@
-public with sharing class VisualFormWizardController {
+public with sharing class C501_VisualFormWizard_Controller {
 
     public Boolean managePeople { get; private set; } 
     public String scaleImage {get; private set;}
@@ -12,7 +12,7 @@ public with sharing class VisualFormWizardController {
     Contact contact;
     Account account;
 
-    public VisualFormWizardController() {
+    public C501_VisualFormWizard_Controller() {
         
         scaleIndex = 1;
         setScale(scaleIndex);
@@ -23,75 +23,75 @@ public with sharing class VisualFormWizardController {
         if(contact == null) {
             contact = new Contact();
             contact.LastName = 'John Doe';
-            contact.Email = 'joinvroom@gmail.com';
+            contact.Email = 'youremail@domain.com';
             contact.C501_Zipcode__c = '12345';
         } 
         
         return contact;
-	}
+    }
 
     public Account getAccount() {
 
         if(account == null) {
-        	account = new Account();  
-			account.Name = 'Type your organization here';
-			account.C501_Organization_Reach__c = 'Type or select an option';
+            account = new Account();  
+            account.Name = 'Type your organization here';
+            account.C501_Organization_Reach__c = 'Type or select an option';
             account.C501_Org_Language_Other__c = 'Type language here';
-			account.C501_Org_SizeOther__c = 'Please Describe Here';
+            account.C501_Org_SizeOther__c = 'Please Describe Here';
         } 
         
         return account;
-	}
+    }
     
-   	public PageReference start() {
-        return Page.VisualFormWizard;
-   	}
+    public PageReference start() {
+        return Page.C501_VisualFormWizard_Choice;
+    }
 
-   	public PageReference managePeople() {
+    public PageReference managePeople() {
         managePeople = True;
-	    return getOrgName();
-   	}
+        return getOrgName();
+    }
     
-   	public PageReference workDirectly() {
+    public PageReference workDirectly() {
         managePeople = False;
-	    return getOrgName();
-   	}
+        return getOrgName();
+    }
 
-   	public PageReference getOrgName() {
-	    return Page.C501_VisualFormWizard_OrgName;
-   	}
+    public PageReference getOrgName() {
+        return Page.C501_VisualFormWizard_OrgName;
+    }
 
-   	public PageReference getOrgNameNext() {
+    public PageReference getOrgNameNext() {
         
         if (managePeople) {
             return getOrgReach();
         }
         
-	    return getOrgSize();
-   	}
+        return getOrgSize();
+    }
     
-   	public PageReference getOrgSize() {
-		return Page.C501_VisualFormWizard_OrgSize;
-   	}
+    public PageReference getOrgSize() {
+        return Page.C501_VisualFormWizard_OrgSize;
+    }
 
-   	public PageReference getOrgSizeNext() {
+    public PageReference getOrgSizeNext() {
         
         account.C501_Org_Size__c = scaleText;
 
-		return Page.C501_VisualFormWizard_ContactInfo;
-   	}
+        return Page.C501_VisualFormWizard_ContactInfo;
+    }
     
-   	public PageReference getOrgLanguage() {
-		return Page.C501_VisualFormWizard_OrgLanguage;
-   	}
+    public PageReference getOrgLanguage() {
+        return Page.C501_VisualFormWizard_OrgLanguage;
+    }
 
-   	public PageReference getOrgReach() {
-		return Page.C501_VisualFormWizard_OrgReach;
-   	}
+    public PageReference getOrgReach() {
+        return Page.C501_VisualFormWizard_OrgReach;
+    }
     
-   	public PageReference getContactInfo() {
-		return Page.C501_VisualFormWizard_ContactInfo;
-   	}
+    public PageReference getContactInfo() {
+        return Page.C501_VisualFormWizard_ContactInfo;
+    }
     
     public void updateScale() {
         
@@ -102,13 +102,13 @@ public with sharing class VisualFormWizardController {
         if (scaleXClick < indexXPosition) {
             
             if (scaleIndex > 0) {
-            	scaleIndex--;
+                scaleIndex--;
             }
         }
         else {
             
             if (scaleIndex < 7) {
-            	scaleIndex++;
+                scaleIndex++;
             }
         }
         
@@ -165,8 +165,8 @@ public with sharing class VisualFormWizardController {
     
         if (!MyMatcher.matches()) 
             res = false;
-        return res;	
-	}
+        return res; 
+    }
     
     public PageReference save() {
 
@@ -174,7 +174,7 @@ public with sharing class VisualFormWizardController {
             formError = 'Invalid name';
             return getContactInfo();
         }
-        if (contact.Email == 'joinvroom@gmail.com' || !validateEmail(contact.Email)) {
+        if (contact.Email == 'youremail@domain.com' || !validateEmail(contact.Email)) {
             formError = 'Invalid email address';
             return getContactInfo();
         }
@@ -190,10 +190,14 @@ public with sharing class VisualFormWizardController {
             contact.LastName = name.substring(nameTokens[0].length());
         }
 
+        if (string.isBlank(account.name) || account.name == 'Type your organization here') {
+            account.name = contact.LastName;
+        }
+        
         // Check for existing contact
         List<Contact> existingContactQuery = [SELECT Account.Name
                                        FROM Contact
-                                       WHERE Email=:contact.Email AND LastName=:contact.LastName
+                                       WHERE Email=:contact.Email AND LastName=:contact.LastName AND C501_VFW_Managed__c=TRUE
                                        LIMIT 1];
         if (!existingContactQuery.isEmpty()) {
             existingContactQuery[0].FirstName = contact.FirstName;
@@ -224,7 +228,13 @@ public with sharing class VisualFormWizardController {
     
     public PageReference finish() {
 
-        PageReference redirectPage = new PageReference('http://joinvroom.org/');
+        C501_VFW_Settings__c standardVFWSetting = C501_VFW_Settings__c.getInstance('Standard');
+        string redirectURL = standardVFWSetting.C501_VFW_Setting_Choice2_Redirect__c;
+        if (managePeople) {
+            redirectUrl = standardVFWSetting.C501_VFW_Setting_Choice1_Redirect__c;
+        }
+        
+        PageReference redirectPage = new PageReference(redirectUrl);
         redirectPage.setRedirect(true);
 
         return redirectPage;
