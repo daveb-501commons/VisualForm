@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>C501_VFW_Label_BackButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_BackButton</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgChoiceDirect1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgChoiceDirect1</shortDescription>
+        <value>I work directly with families and</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgChoiceDirect2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgChoiceDirect2</shortDescription>
+        <value>caregivers.</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgChoiceHeader</fullName>
+        <categories>C501, VFW</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgChoiceHeader</shortDescription>
+        <value>What kind of work do you do?</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgChoiceManager1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgChoiceManager1</shortDescription>
+        <value>I manage people who work</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgChoiceManager2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgChoiceManager2</shortDescription>
+        <value>directly with families and</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgChoiceManager3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgChoiceManager3</shortDescription>
+        <value>caregivers.</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgLanguageDefault</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgLanguageDefault</shortDescription>
+        <value>Type Language Here</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgLanguageEnglish</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgLanguageEnglish</shortDescription>
+        <value>English</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgLanguageHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgLanguageHeader</shortDescription>
+        <value>What languages are a priority for your community?</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgLanguageOther</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgLanguageOther</shortDescription>
+        <value>Other:</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgLanguageRussian</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgLanguageRussian</shortDescription>
+        <value>Russian</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgLanguageSpanish</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgLanguageSpanish</shortDescription>
+        <value>Spanish</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgLanguageVietnamese</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgLanguageVietnamese</shortDescription>
+        <value>Vietnamese</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgNameDefault</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgNameDefault</shortDescription>
+        <value>Type your organization here</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgNameExample</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgNameExample</shortDescription>
+        <value>Example: Dallas YMCA, Jones Day Care</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgReachDefault</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgReachDefault</shortDescription>
+        <value>Select an option</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgReachHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgReachHeader</shortDescription>
+        <value>What is the scale of your organization’s reach?</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgReachHeaderInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgReachHeaderInfo</shortDescription>
+        <value>Smaller, like a neighborhood? Or larger, like the whole country?</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgReachPrint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgReachPrint</shortDescription>
+        <value>Printing in bulk?</value>
+    </labels>
+    <labels>
+        <fullName>C501_VFW_Label_OrgSizeOtherDefault</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>C501_VFW_Label_OrgSizeOtherDefault</shortDescription>
+        <value>Please Describe Here</value>
+    </labels>
+</CustomLabels>

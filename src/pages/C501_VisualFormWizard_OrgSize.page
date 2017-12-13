@@ -154,13 +154,13 @@
                 <table style="margin: 0px auto;" class="TableInputLabel">
                     <tr><td style="text-align:center;padding-left: 69px;padding-top:60px">
                             <div id="scalePeople" class="shadow" style="margin: auto;">
-                                <img class="opaque" id="scalePeople1" style="margin-left:325px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/100_or_Less.svg')}" />
-                                <img id="scalePeople2" style="margin-left:275px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/100_to_200.svg')}" />
-                                <img id="scalePeople3" style="margin-left:225px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/200_to_500.svg')}" />
-                                <img id="scalePeople4" style="margin-left:210px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/500_to_1k.svg')}" />
-                                <img id="scalePeople5" style="margin-left:240px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/Under_5k.svg')}" />
-                                <img id="scalePeople6" style="margin-left:240px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/Under_10k.svg')}" />
-                                <img id="scalePeople7" style="margin-left:240px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/Over_10k.svg')}" />
+                                <img class="opaque" id="scalePeople1" style="margin-left:325px;height:100px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/100_or_Less.svg')}" />
+                                <img id="scalePeople2" style="margin-left:275px;height:100px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/100_to_200.svg')}" />
+                                <img id="scalePeople3" style="margin-left:225px;height:100px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/200_to_500.svg')}" />
+                                <img id="scalePeople4" style="margin-left:210px;height:100px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/500_to_1k.svg')}" />
+                                <img id="scalePeople5" style="margin-left:240px;height:100px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/Under_5k.svg')}" />
+                                <img id="scalePeople6" style="margin-left:240px;height:100px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/Under_10k.svg')}" />
+                                <img id="scalePeople7" style="margin-left:240px;height:100px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/Over_10k.svg')}" />
                             </div>
                         
                         </td></tr>                
@@ -173,22 +173,22 @@
                     
                     <tr><td>
                         <div id="draggable" class="ui-draggable">
-                            <img id="sliderButton" style="z-index:999;position:absolute;margin-left: 28px;width: 26px;" src="{!URLFOR($Resource.VisualFormWizard, 'images/CircleButton.svg')}" />
+                            <img id="sliderButton" style="z-index:999;position:absolute;margin-left: 28px;width: 26px;" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/CircleButton.svg')}" />
                         </div>
     
                         <div id="scaleSlider" class="shadow">
-                            <img class="opaque" id="scaleImage1" style="width: 800px;margin-left: 25px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly1.svg')}" onclick="clickImage(event.offsetX);return false;" />
-                            <img id="scaleImage2" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly2.svg')}" onclick="clickImage(event.offsetX);return false;" />
-                            <img id="scaleImage3" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly3.svg')}" onclick="clickImage(event.offsetX);return false;" />
-                            <img id="scaleImage4" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly4.svg')}" onclick="clickImage(event.offsetX);return false;" />
-                            <img id="scaleImage5" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly5.svg')}" onclick="clickImage(event.offsetX);return false;" />
-                            <img id="scaleImage6" style="width: 800px;margin-left: 25px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly6.svg')}" onclick="clickImage(event.offsetX);return false;" />
-                            <img id="scaleImage7" style="width: 800px;margin-left: 36px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly7.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img class="opaque" id="scaleImage1" style="width: 800px;margin-left: 25px;margin-right: 25px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/BarOnly1.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage2" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/BarOnly2.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage3" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/BarOnly3.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage4" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/BarOnly4.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage5" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/BarOnly5.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage6" style="width: 800px;margin-left: 25px;margin-right: 25px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/BarOnly6.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage7" style="width: 800px;margin-left: 36px;margin-right: 25px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/BarOnly7.svg')}" onclick="clickImage(event.offsetX);return false;" />
                         </div>
     
     <!--
                         <apex:variable var="imageVar" value="{!scaleImage}" id="scaleImageText"/>
-                        <apex:image id="scaleImage" style="width: 800px;margin-left: 25px;margin-right: 25px" url="{!URLFOR($Resource.VisualFormWizard, 'images/Bar1.svg')}" onclick="UpdateImage(event.offsetX, event.offsetY);setupField();return false;" >
+                        <apex:image id="scaleImage" style="width: 800px;margin-left: 25px;margin-right: 25px" url="{!URLFOR($Resource.C501_VFW_Resource, 'images/Bar1.svg')}" onclick="UpdateImage(event.offsetX, event.offsetY);setupField();return false;" >
                             <apex:actionSupport event="onclick" action="{!getOrgSize}" />
                         </apex:image>
     -->
@@ -213,7 +213,7 @@
                 <div style="width:100%">
                     <div style="width: 650px; margin: 0 auto;" class="ButtonDiv" id="NextStep">
                         <apex:commandLink action="{!getOrgSizeNext}">
-                            <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.VisualFormWizard, 'images/Continue_Button.svg')}" />
+                            <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
                         </apex:commandLink>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                     <tr>
                         <td style="padding-top:44px;width:40px;">
                             <div class="ButtonBackDiv">
-                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgName}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Back_Button.svg')}" style="width:30px;"/>
+                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgName}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Back_Button.svg')}" style="width:30px;"/>
                             </div>
                         <td style="padding-top:12px;width:40px;">
                             <div class="ButtonBackDiv">
@@ -237,7 +237,7 @@
                                 <div>
                                     <apex:outputText styleClass="FooterText" Value="Skip" />
                                 </div>
-                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgSizeNext}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgSizeNext}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;"/>
                             </div>
                         </td>
                     </tr>

@@ -1,28 +1,29 @@
 public with sharing class C501_VisualFormWizard_Controller {
 
     public Boolean managePeople { get; private set; } 
-    public String scaleImage {get; private set;}
-    public String scalePeople {get; private set;}
-    public String scaleText {get; private set;}
-    private Integer scaleIndex {get; set;}
-    public Integer scaleXClick {get; set;}
-    public Integer scaleYClick {get; set;}
     public String formError {get; private set;}
     public String strLanguage {get; private set;}
-    public String strOrgReach {get; set;}
     public String strOrgSize {get; set;}
-    public Integer strOrgSizePosition {get; set;}
+    public Integer nOrgSizePosition {get; set;}
+    
+    // Translated Labels
+    public String strC501_VFW_Label_OrgNameDefault {get; set;}
+    public String strC501_VFW_Label_OrgReachDefault {get; set;}
+    public String strC501_VFW_Label_OrgSizeOtherDefault {get; set;}
+    public String strC501_VFW_Label_OrgLanguageOtherDefault {get; set;}
     
     Contact contact;
     Account account;
 
     public C501_VisualFormWizard_Controller() {
         
-        strOrgSizePosition = 0;
-        scaleIndex = 1;
-        setScale(scaleIndex);
+        nOrgSizePosition = 0;
         strLanguage = 'en-us';
         managePeople = false;
+        strC501_VFW_Label_OrgNameDefault = '';
+        strC501_VFW_Label_OrgReachDefault = '';
+        strC501_VFW_Label_OrgSizeOtherDefault = '';
+        strC501_VFW_Label_OrgLanguageOtherDefault = '';
     }
     
     public Contact getContact() {
@@ -42,24 +43,21 @@ public with sharing class C501_VisualFormWizard_Controller {
 
         if(account == null) {
             account = new Account();  
-            account.C501_VFW_Org_Name__c = 'Type your organization here';
-            account.C501_Organization_Reach__c = 'Select an option';
-            account.C501_Org_Language_Other__c = 'Type language here';
-            account.C501_Org_SizeOther__c = 'Please Describe Here';
-            strOrgReach = 'Select an option';
         } 
         
         return account;
-    }
-    
-    public void saveOrgReach() {
-        
-        account.C501_Organization_Reach__c = strOrgReach;
     }
 
     public void saveOrgSize() {
         
         account.C501_Org_Size__c = strOrgSize;
+    }
+
+    public void saveLabels() {
+        account.C501_VFW_Org_Name__c = strC501_VFW_Label_OrgNameDefault;
+        account.C501_Org_Language_Other__c = strC501_VFW_Label_OrgLanguageOtherDefault;
+        account.C501_Org_SizeOther__c = strC501_VFW_Label_OrgSizeOtherDefault;
+        account.C501_Organization_Reach__c = strC501_VFW_Label_OrgReachDefault;
     }
     
     public PageReference checkUrlParameters() {
@@ -110,7 +108,7 @@ public with sharing class C501_VisualFormWizard_Controller {
 
     public PageReference getOrgNameNext() {
         
-        if (account.C501_VFW_Org_Name__c != 'Type your organization here') {
+        if (account.C501_VFW_Org_Name__c != strC501_VFW_Label_OrgNameDefault) {
             account.Name = account.C501_VFW_Org_Name__c;
         }
             
@@ -131,8 +129,6 @@ public with sharing class C501_VisualFormWizard_Controller {
 
     public PageReference getOrgSizeNext() {
         
-        account.C501_Org_Size__c = scaleText;
-
         return Page.C501_VisualFormWizard_ContactInfo;
     }
     
@@ -155,65 +151,6 @@ public with sharing class C501_VisualFormWizard_Controller {
         }
         
         return getOrgSize();
-    }
-    
-    public void updateScale() {
-        
-        scaleIndex = scaleXClick / 125;
-        Integer indexXPosition = 125 * scaleIndex;
-        if (scaleXClick < indexXPosition) {
-            
-            if (scaleIndex > 0) {
-                scaleIndex--;
-            }
-        }
-        else {
-            
-            if (scaleIndex < 7) {
-                scaleIndex++;
-            }
-        }
-        
-        setScale(scaleIndex);
-    }
-
-    private void setScale(Integer scaleValue) {
-        
-        if (scaleValue == 2) {
-            scaleImage = 'images/Bar2.svg';
-            scalePeople = 'images/100_to_200.svg';
-            scaleText = '100 to 200';
-        }
-        else if (scaleValue == 3) {
-            scaleImage = 'images/Bar3.svg';
-            scalePeople = 'images/200_to_500.svg';
-            scaleText = '200 to 500';
-        }
-        else if (scaleValue == 4) {
-            scaleImage = 'images/Bar4.svg';
-            scalePeople = 'images/500_to_1k.svg';
-            scaleText = '500 to 1000';
-        }
-        else if (scaleValue == 5) {
-            scaleImage = 'images/Bar5.svg';
-            scalePeople = 'images/Under_5k.svg';
-            scaleText = 'Under 5,000';
-        }
-        else if (scaleValue == 6) {
-            scaleImage = 'images/Bar6.svg';
-            scalePeople = 'images/Under_10k.svg';
-            scaleText = 'Under 10,000';
-        }
-        else if (scaleValue == 7) {
-            scaleImage = 'images/Bar7.svg';
-            scalePeople = 'images/Over_10k.svg';
-            scaleText = 'Over 10,000';
-        }
-        else {
-            scaleImage = 'images/Bar1.svg';
-            scalePeople = 'images/100_or_Less.svg';
-            scaleText = '100 or Less';
-        }
     }
     
     public static Boolean validateEmail(String email) {
@@ -264,11 +201,11 @@ public with sharing class C501_VisualFormWizard_Controller {
             contact.LastName = contact.LastName.substring(nameTokens[0].length());
         }
 
-        if (string.isBlank(account.name) || account.name == 'Type your organization here') {
+        if (string.isBlank(account.name) || account.name == strC501_VFW_Label_OrgNameDefault) {
             account.name = contact.LastName;
         }
         
-        if (account.C501_Org_SizeOther__c != 'Please Describe Here') {
+        if (account.C501_Org_SizeOther__c != strC501_VFW_Label_OrgSizeOtherDefault) {
             Account.C501_Org_Size__c = '';
             Account.C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
         }

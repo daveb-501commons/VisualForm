@@ -92,7 +92,7 @@
 
                     <div class="ButtonDiv" id="NextStep">
                         <apex:commandLink action="{!save}">
-	                        <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" reRender="errorPanel,nameSection,emailSection" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.VisualFormWizard, 'images/Continue_Button.svg')}" />
+	                        <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" reRender="errorPanel,nameSection,emailSection" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
                         </apex:commandLink>
                     </div>
     
@@ -103,7 +103,7 @@
                 <tr>
                     <td style="padding-top:44px;width:40px;">
                         <div class="ButtonBackDiv">
-                            <apex:commandButton styleClass="ButtonStyle" action="{!getContactInfoPrevious}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Back_Button.svg')}" style="width:30px;"/>
+                            <apex:commandButton styleClass="ButtonStyle" action="{!getContactInfoPrevious}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Back_Button.svg')}" style="width:30px;"/>
                         </div>
                     </td>
                     <td style="padding-top:12px;width:40px;">

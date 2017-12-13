@@ -79,7 +79,7 @@
     <!--
                             <tr><td colspan="4" style="text-align:right;padding-top:20px;padding-right:20px;">
                                 <div class="ButtonDiv" id="NextStep">
-                                    <apex:commandButton styleClass="ButtonStyle" action="{!getContactInfo}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;" />
+                                    <apex:commandButton styleClass="ButtonStyle" action="{!getContactInfo}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;" />
                                 </div>
                             </td></tr>
     -->
@@ -87,7 +87,7 @@
         
                         <div class="ButtonDiv" id="NextStep">
                             <apex:commandLink action="{!getContactInfo}">
-                                <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.VisualFormWizard, 'images/Continue_Button.svg')}" />
+                                <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
                             </apex:commandLink>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                     <tr>
                         <td style="padding-top:44px;width:40px;">
                             <div class="ButtonBackDiv">
-                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgReach}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Back_Button.svg')}" style="width:30px;"/>
+                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgReach}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Back_Button.svg')}" style="width:30px;"/>
                             </div>
                         </td>
                         <td style="padding-top:12px;width:40px;">
@@ -112,7 +112,7 @@
                                 <div>
                                     <apex:outputText styleClass="FooterText" Value="Skip" />
                                 </div>
-                                <apex:commandButton styleClass="ButtonStyle" action="{!getContactInfo}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                                <apex:commandButton styleClass="ButtonStyle" action="{!getContactInfo}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;"/>
                             </div>
                         </td>
                     </tr>

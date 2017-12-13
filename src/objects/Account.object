@@ -78,13 +78,12 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Type or select an option</fullName>
-                    <default>false</default>
-                    <label>Type or select an option</label>
+                    <fullName>Select an option</fullName>
+                    <default>true</default>
+                    <label>Select an option</label>
                 </value>
                 <value>
                     <fullName>Neighborhood</fullName>
@@ -143,5 +142,15 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>C501_VFW_Org_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_VFW_Org_Name</label>
+        <length>128</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
 </CustomObject>

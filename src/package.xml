@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>VisualFormWizard</fullName>
+    <fullName>C501_VisualFormWizard</fullName>
     <types>
         <members>C501_VisualFormWizard_Controller</members>
         <members>C501_VisualFormWizard_ControllerTests</members>
@@ -25,18 +25,49 @@
         <members>Account.C501_Org_SizeOther__c</members>
         <members>Account.C501_Org_Size__c</members>
         <members>Account.C501_Organization_Reach__c</members>
+        <members>Account.C501_VFW_Org_Name__c</members>
         <members>C501_VFW_Settings__c.C501_VFW_Setting_Choice1_Redirect__c</members>
         <members>C501_VFW_Settings__c.C501_VFW_Setting_Choice2_Redirect__c</members>
+        <members>Contact.C501_VFW_Email__c</members>
         <members>Contact.C501_VFW_Managed__c</members>
-        <members>Contact.C501_Zipcode__c</members>
+        <members>Contact.C501_VFW_Name__c</members>
+        <members>Contact.C501_VFW_Zipcode__c</members>
         <name>CustomField</name>
+    </types>
+    <types>
+        <members>C501_VFW_Label_BackButton</members>
+        <members>C501_VFW_Label_OrgChoiceDirect1</members>
+        <members>C501_VFW_Label_OrgChoiceDirect2</members>
+        <members>C501_VFW_Label_OrgChoiceHeader</members>
+        <members>C501_VFW_Label_OrgChoiceManager1</members>
+        <members>C501_VFW_Label_OrgChoiceManager2</members>
+        <members>C501_VFW_Label_OrgChoiceManager3</members>
+        <members>C501_VFW_Label_OrgLanguageDefault</members>
+        <members>C501_VFW_Label_OrgLanguageEnglish</members>
+        <members>C501_VFW_Label_OrgLanguageHeader</members>
+        <members>C501_VFW_Label_OrgLanguageOther</members>
+        <members>C501_VFW_Label_OrgLanguageRussian</members>
+        <members>C501_VFW_Label_OrgLanguageSpanish</members>
+        <members>C501_VFW_Label_OrgLanguageVietnamese</members>
+        <members>C501_VFW_Label_OrgNameDefault</members>
+        <members>C501_VFW_Label_OrgNameExample</members>
+        <members>C501_VFW_Label_OrgReachDefault</members>
+        <members>C501_VFW_Label_OrgReachHeader</members>
+        <members>C501_VFW_Label_OrgReachHeaderInfo</members>
+        <members>C501_VFW_Label_OrgReachPrint</members>
+        <members>C501_VFW_Label_OrgSizeOtherDefault</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>CustomLabels</members>
+        <name>CustomLabels</name>
     </types>
     <types>
         <members>C501_VFW_Settings__c</members>
         <name>CustomObject</name>
     </types>
     <types>
-        <members>C501_VisualFormWizard</members>
+        <members>C501_VFW_Resource</members>
         <name>StaticResource</name>
     </types>
     <version>41.0</version>
