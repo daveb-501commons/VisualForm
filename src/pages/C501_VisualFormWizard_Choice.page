@@ -1,159 +1,78 @@
-<apex:page controller="C501_VisualFormWizard_Controller" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
-    <apex:stylesheet value="{!URLFOR($Resource.C501_VisualFormWizard, 'styles/custom.css')}"/>
-    <style type="text/css">
-
-        @font-face {
-            font-family: Omnes-Medium;
-        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
-        }
-
-        @font-face {
-            font-family: Omnes-Regular;
-        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
-        }
-
-        @font-face {
-            font-family: Omnes-Semibold;
-        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
-        }
-        
-        body {
-            background-image : url({!URLFOR($Resource.C501_VisualFormWizard, 'images/BackgroundPattern.svg')});
-        }  
-
-        .TextHeaderLocal {
-        	text-align: center;
-        	font-family: Omnes-Semibold, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 30px;
-        	color: #47341F;
-        }
-        
-        .TextDescriptionLocal {
-        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 30px;
-        	color: #47341F;
-        }
-        
-        .TextInfoLocal {
-        	text-align: center;
-        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 14px;
-        	color: #47341F;
-        }
-        
-        .TableChoiceLocal {
-			width:500px;
-            height:670px;
-           	background-color: white;
-			color: white;
-        	border: 0px;
-        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
-            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
-        }
-        
-        .ButtonDivLocal {
-        	display:none;
-        }
-        
-        .SkipTextLocal {
-        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	font-weight: 500;
-        	font-size: 14px;
-        	color: #00B9B4;
-        	margin-left: 15px;
-        }
-        
-        .ButtonStyleLocal {
-        	margin-top: -35px;
-        	margin-left: 50px;
-        	width: 50px;
-        	height: 50px;
-        	align: right;
-        }
-        
-        .ButtonSkipDivLocal {
-        	margin-top: 25px;
-        	float: right;
-        }
-
-        .InputLabelLocal {
-			background-color: #f8f8f8;
-        	color:#DDD1BE;
-          	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	text-align: center;
-        	font-size: 30px;
-        }
-        
-    </style>
-
+<apex:page controller="C501_VisualFormWizard_Controller" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false" action="{!checkUrlParameters}" language="{!strLanguage}">
+    
+    <apex:stylesheet value="{!URLFOR($Resource.C501_VFW_Resource, 'style.css')}"/>
+    
     <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
     <script>
 
-    var strManagePeople = "none";
-    var strWorkDirectly = "none";
-        
-    function fxManagePeople(object) {
-        $("[id$='imageManagePeople']").css("opacity", "1.0");
-        $("[id$='managePeople']").css("display", "block");
-
-        $("[id$='imageWorkDirectly']").css("opacity", "0.2");
-        $("[id$='workDirectly']").css("display", "none");
-    }
+        var strManagePeople = "none";
+        var strWorkDirectly = "none";
     
-    function fxWorkDirectly(object) {
-        $("[id$='imageManagePeople']").css("opacity", "0.2");
-        $("[id$='managePeople']").css("display", "none");
-
-        $("[id$='imageWorkDirectly']").css("opacity", "1.0");
-        $("[id$='workDirectly']").css("display", "block");
-    }
+        function fxReset() {
+            $("[id$='imageManagePeople']").css("opacity", "1.0");
+            $("[id$='imageWorkDirectly']").css("opacity", "1.0");
+        }
+        
+        function fxManagePeople() {
+            $("[id$='imageManagePeople']").css("opacity", "1.0");
+            $("[id$='imageWorkDirectly']").css("opacity", "0.2");
+        }
+        
+        function fxWorkDirectly() {
+            $("[id$='imageManagePeople']").css("opacity", "0.2");
+            $("[id$='imageWorkDirectly']").css("opacity", "1.0");
+        }
     
     </script>
     
-	<div class="TextHeaderLocal" style="margin-top:40px;margin-bottom:40px;">
-	    <apex:outputText Value="What kind of work do you do?"/>
+	<div class="TextHeader" style="margin-top:40px;margin-bottom:40px;">
+	    <apex:outputText Value="{!$Label.C501_VFW_Label_OrgChoiceHeader}"/>
     </div>    
     <apex:form >
-        <apex:pageBlock >
-            <table style="margin: 0px auto;"><tr><td>
-                <table class="TableChoiceLocal" id="imageManagePeople">
-                    <tr><td>
-                        <apex:image onclick="fxManagePeople(this);" url="{!URLFOR($Resource.C501_VisualFormWizard, 'images/manager.svg')}" style="width:500px;" />
+        
+        <table style="margin: 0px auto;border:0px;border-spacing:0px;"><tr><td style="border:0px;padding: 0px;">
+            <table class="TableChoice" id="imageManagePeople">
+                <tr><td style="border:0px;padding: 0px;vertical-align:top">
+                    <apex:image onmouseover="fxManagePeople();" onmouseout="fxReset();" url="{!URLFOR($Resource.C501_VFW_Resource, 'images/manager.svg')}" style="width:100%;" >
+                        <apex:actionSupport event="onclick" action="{!managePeople}" />
+                    </apex:image>
                     </td></tr>
-                    <tr><td style="padding-left:32px;padding-top: 40px;height:32px">
-                        <apex:outputText styleClass="TextDescriptionLocal" Value="I manage people who work" />
+                <tr><td style="padding-left:32px;padding-top: 40px;height:32px">
+                    <apex:outputText styleClass="TextDescription" Value="{!$Label.C501_VFW_Label_OrgChoiceManager1}" />
                     </td></tr>
-                    <tr><td style="padding-left:32px;height:32px">
-                        <apex:outputText styleClass="TextDescriptionLocal" Value="directly with familites and" />
+                <tr><td style="padding-left:32px;height:32px">
+                    <apex:outputText styleClass="TextDescription" Value="{!$Label.C501_VFW_Label_OrgChoiceManager2}" />
                     </td></tr>
-                    <tr><td style="padding-left:32px;padding-bottom:30px;height:32px">
-                        <apex:outputText styleClass="TextDescriptionLocal" Value="caregivers." />
+                <tr><td style="padding-left:32px;padding-bottom:30px;height:32px">
+                    <apex:outputText styleClass="TextDescription" Value="{!$Label.C501_VFW_Label_OrgChoiceManager3}" />
                     </td></tr>
-                    <tr><td style="float:right;margin-right:30px;">
-                        <div class="ButtonDivLocal" id="managePeople">
-                            <apex:commandButton styleClass="ButtonStyleLocal" action="{!managePeople}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;" />
-                        </div>
+                <tr><td style="float:right;margin-right:30px;">
+                    <div class="ButtonDiv" id="managePeople">
+                        <apex:commandButton styleClass="ButtonStyle" action="{!managePeople}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;" />
+                    </div>
                     </td></tr>
-                </table>
-            </td><td style="padding-left:20px">
-                <table class="TableChoiceLocal" id="imageWorkDirectly">
-                    <tr align="center"><td>
-                        <apex:image onclick="fxWorkDirectly(this);" url="{!URLFOR($Resource.C501_VisualFormWizard, 'images/directprovider.svg')}" style="width:500px" />
+            </table>
+            </td><td style="padding-left:20px;border:0px;border-spacing:0px;">
+            <table class="TableChoice" id="imageWorkDirectly">
+                <tr align="center"><td style="border:0px;padding: 0px;vertical-align:top">
+                    <apex:image onmouseover="fxWorkDirectly();" onmouseout="fxReset();" url="{!URLFOR($Resource.C501_VFW_Resource, 'images/directprovider.svg')}" style="width:100%;" >
+                        <apex:actionSupport event="onclick" action="{!workDirectly}" />
+                    </apex:image>
                     </td></tr>
-                    <tr><td style="padding-left:32px;padding-top: 40px;height:32px">
-	                    <apex:outputText styleClass="TextDescriptionLocal" Value="I work directly with families and" />
+                <tr><td style="padding-left:32px;padding-top: 40px;height:32px">
+                    <apex:outputText styleClass="TextDescription" Value="{!$Label.C501_VFW_Label_OrgChoiceDirect1}" />
                     </td></tr>
-                    <tr><td style="padding-left:32px;padding-bottom:60px;height:32px">
-	                    <apex:outputText styleClass="TextDescriptionLocal" Value="caregivers." />
+                <tr><td style="padding-left:32px;padding-bottom:60px;height:32px">
+                    <apex:outputText styleClass="TextDescription" Value="{!$Label.C501_VFW_Label_OrgChoiceDirect2}" />
                     </td></tr>
-                    <tr><td style="float:right;margin-right:30px;">
-                        <div class="ButtonDivLocal" id="workDirectly">
-                            <apex:commandButton styleClass="ButtonStyleLocal" action="{!workDirectly}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;" />
-                        </div>
+                <tr><td style="float:right;margin-right:30px;">
+                    <div class="ButtonDiv" id="workDirectly">
+                        <apex:commandButton styleClass="ButtonStyle" action="{!workDirectly}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;" />
+                    </div>
                     </td></tr>
-                </table>
-        	</td></tr></table>
+            </table>
+            </td></tr>
+        </table>
                         
-	    </apex:pageBlock>
     </apex:form>
 </apex:page>

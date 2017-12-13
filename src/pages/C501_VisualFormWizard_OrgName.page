@@ -1,165 +1,106 @@
-<apex:page controller="C501_VisualFormWizard_Controller" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
+<apex:page controller="C501_VisualFormWizard_Controller"  action="{!checkUrlParameters}" language="{!strLanguage}" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
     
-    <style type="text/css">
+    <apex:stylesheet value="{!URLFOR($Resource.C501_VFW_Resource, 'style.css')}"/>
 
-        @font-face {
-            font-family: Omnes-Medium;
-        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
-        }
-
-        @font-face {
-            font-family: Omnes-Regular;
-        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
-        }
-
-        @font-face {
-            font-family: Omnes-Semibold;
-        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
-        }
-        
-        body {
-            background-image : url({!URLFOR($Resource.C501_VisualFormWizard, 'images/BackgroundPattern.svg')});
-        }  
-
-        .TextHeaderLocal {
-        	text-align: center;
-        	font-family: Omnes-Semibold, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 30px;
-        	color: #47341F;
-        }
-        
-        .TextDescriptionLocal {
-        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 30px;
-        	color: #47341F;
-        }
-        
-        .TextInfoLocal {
-        	text-align: center;
-        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 14px;
-        	color: #47341F;
-        }
-        
-        .TableChoiceLocal {
-			width:500px;
-            height:670px;
-           	background-color: white;
-			color: white;
-        	border: 0px;
-        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
-            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
-        }
-
-        .ButtonDivLocal {
-        	display:none;
-        }
-        
-        .SkipTextLocal {
-        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	font-weight: 500;
-        	font-size: 14px;
-        	color: #00B9B4;
-        	margin-left: 15px;
-        }
-        
-        .ButtonStyleLocal {
-        	margin-top: -35px;
-        	margin-left: 50px;
-        	width: 50px;
-        	height: 50px;
-        	align: right;
-        }
-        
-        .ButtonSkipDivLocal {
-        	margin-top: 25px;
-        	float: right;
-        }
-        
-        .InputLabelLocal {
-			background-color: white;
-        	color:#DDD1BE;
-          	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	text-align: center;
-        	font-size: 30px;
-        	border: 0px;
-        }
-
-        .TableInputLabelLocal {
-			width:650px;
-            height:175px;
-           	background-color: white;
-			color: white;
-        	border: 0px;
-        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
-            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
-        }
-        
-    </style>
-    
     <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
-
-	<div class="TextHeaderLocal" style="margin-top:40px;margin-bottom:40px;">
+    <script type="text/javascript">
+        
+        $(window).load(function() {
+            $('[id$="hiddenOrgNameDefault"]').val('{!$Label.C501_VFW_Label_OrgNameDefault}');
+            functionSaveLabels();
+        });
+        
+        function setupField(field) {
+            field.style.color = "black";
+            field.style.textDecoration = "";
+            
+            if (field.value == "{!$Label.C501_VFW_Label_OrgNameDefault}") {
+                field.value = "";
+                $("[id$='NextStep']").css("display", "block");
+            }
+    }
+    </script>
+    
+	<div class="TextHeader" style="margin-top:40px;margin-bottom:40px;">
 	    <apex:outputText Value="Great!"/>
     </div>
-	<div class="TextHeaderLocal" style="margin-bottom:10px;">
+	<div class="TextHeader" style="margin-bottom:10px;">
 	    <apex:outputText Value="Just 3 more questions to know"/>
     </div>    
-	<div class="TextHeaderLocal" style="margin-bottom:40px;">
+	<div class="TextHeader" style="margin-bottom:40px;">
 	    <apex:outputText Value="how to serve you best."/>
     </div>    
-	<div class="TextHeaderLocal" style="margin-bottom:10px;">
+	<div class="TextHeader" style="margin-bottom:10px;">
 	    <apex:outputText Value="What is the name of the organization you are a part of?"/>
     </div>    
-	<div class="TextInfoLocal" style="margin-bottom:40px;">
-	    <apex:outputText Value="Example: Community Center, Daycare"/>
+	<div class="TextInfo" style="margin-bottom:40px;">
+	    <apex:outputText Value="{!$Label.C501_VFW_Label_OrgNameExample}"/>
     </div>    
-    
+
     <apex:form >
+        
+        <apex:inputHidden id="hiddenOrgNameDefault" value="{!strC501_VFW_Label_OrgNameDefault}" /> 
+        <apex:actionFunction name="functionSaveLabels" action="{!saveLabels}" reRender="contactOrganization" />
         
         <apex:pageBlock >
             
             <div style="width:100%">
                 <div style="width: 650px; margin: 0 auto;">
                     
-                    <script type="text/javascript">
-                    function setupField(field) {
-                        field.style.color = "black";
-                        field.style.textDecoration = "";
-                        
-                        if (field.value == "Type your organization here") {
-                        	field.value = "";
-                            $("[id$='NextStep']").css("display", "block");
-                        }
-                    }
-                    </script>
-
-                    <table class="TableInputLabelLocal">
+                    <table class="TableInputLabel">
                         <tr>
-                            <td style="padding-left:69px;">
+                            <td style="padding-left:69px;padding-bottom:20px;">
                                 <apex:pageBlockSection >
                                     <apex:pageBlockSectionItem >
-                                        <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabelLocal" style="margin-top: 40px;width: 512px; height: 40px;" id="contactOrganization" value="{!account.Name}" />
+                                        <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabel" style="margin-top: 0px;width: 512px; height: 40px;" id="contactOrganization" value="{!account.C501_VFW_Org_Name__c}" />
                                     </apex:pageBlockSectionItem>
                                 </apex:pageBlockSection>
                                 <hr style="margin-left:0px;width:512px;height:2px;color:#47341F;background-color:#47341F;"/>
                             </td>
+<!--
                             <td style="padding-top:48px;position:relative;left:-50px;">
-                                <div class="ButtonDivLocal" id="NextStep">
-                                    <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgNameNext}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;" />
+                                <div class="ButtonDiv" id="NextStep">
+                                    <apex:commandButton styleClass="ButtonStyle" action="{!getOrgNameNext}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;" />
                                 </div>
                             </td>
+-->
+                            
                         </tr>
                     </table>
+    
+                    <div class="ButtonDiv" id="NextStep">
+                        <apex:commandLink action="{!getOrgNameNext}">
+                            <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.VisualFormWizard, 'images/Continue_Button.svg')}" />
+                        </apex:commandLink>
+                    </div>
+    
                 </div>
             </div>
-                        
-            <div class="ButtonSkipDivLocal">
-                <div>
-                    <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
-                </div>
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgNameNext}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
-            </div>
+
+			<table width="100%">
+                <tr>
+                    <td style="padding-top:44px;width:40px;">
+                        <div class="ButtonBackDiv">
+                            <apex:commandButton styleClass="ButtonStyle" action="{!getOrgChoice}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Back_Button.svg')}" style="width:30px;"/>
+                        </div>
+                    </td>
+                    <td style="padding-top:12px;width:40px;">
+                        <div class="ButtonBackDiv">
+                            <div>
+                                <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_BackButton}" />
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding-right:40px">
+                        <div class="ButtonSkipDiv">
+                            <div>
+                                <apex:outputText styleClass="FooterText" Value="Skip" />
+                            </div>
+                            <apex:commandButton styleClass="ButtonStyle" action="{!getOrgNameNext}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                        </div>
+                    </td>
+	            </tr>
+            </table>
             
         </apex:pageBlock>
         

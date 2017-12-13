@@ -1,0 +1,299 @@
+body {
+    background-image : url('images/BackgroundPattern.svg');
+}  
+
+@font-face {
+    font-family: Omnes-Medium;
+    src: url('fonts/Omnes-Medium.otf') format("opentype");
+}
+
+@font-face {
+    font-family: Omnes-Regular;
+    src: url('fonts/Omnes-Regular.otf') format("opentype");
+}
+
+@font-face {
+    font-family: Omnes-Semibold;
+    src: url('fonts/Omnes-Semibold.otf') format("opentype");
+}
+
+input[type=checkbox] {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    -webkit-appearance: none;
+    outline: 0;
+}
+
+input[type=checkbox]:checked {
+    background-image: url('images/LargeCheckActive.svg');
+}
+
+input[type=checkbox]:not(:checked) {
+    background-image: url('images/LargeCheckInactive.svg');
+}
+
+li {
+    display: list-item;
+    width: 100%;
+    height: 2em;
+    border:0px solid #ccc;
+    border-top-width: 0;
+    text-indent: 1em;
+    background-color: white;
+    color:#DDD1BE;
+      font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
+    font-size: 30px;
+    border: 0px;
+}
+
+li:first-child {
+    border-top-width: 0px;
+}
+
+li.unselected {
+    display: none;
+    background-color: white;
+}
+
+#scaleSlider {
+    position:relative;
+    width:850px;
+    margin:0 auto 0px;
+  }
+  
+#scaleSlider img {
+    position:absolute;
+    left:0;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    opacity:0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+}
+
+#scaleSlider img.opaque {
+    opacity:1;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=1);
+}
+
+#scalePeople {
+    position:relative;
+    height:100px;
+    margin:0 auto 0px;
+}
+
+#scalePeople img {
+    position:absolute;
+    left:0;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    opacity:0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+}
+
+#scalePeople img.opaque {
+    opacity:1;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=1);
+}
+
+select {
+    opacity: 1.0;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}        
+
+ul {
+    list-style: none;
+    width: 8em;
+    line-height: 3em;
+}
+
+ul#selectUl:hover li.unselected {
+    background-color: white;
+}
+
+ul#selectUl:hover li,
+ul#selectUl:hover li.unselected {
+    display: list-item;
+}
+
+ul#selectUl:hover li {
+    background-color: white;
+}
+
+ul#selectUl li:hover,
+ul#selectUl li.unselected:hover {
+    background-color: white;
+    color:#00B9B4;
+      font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
+    font-size: 30px;
+}
+
+.ButtonBackDiv {
+    float: left;
+}
+
+.ButtonDiv {
+    display:none;
+}
+
+.ButtonSkipDiv {
+    margin-top: 25px;
+    float: right;
+}
+
+.ButtonSkipDiv {
+    margin-top: 25px;
+    float: right;
+}
+
+.ButtonStyle {
+    margin-top: -35px;
+    margin-left: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+.DescriptionScale {
+    margin-bottom: 50px;
+    font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    width: 100%;
+}
+
+.divScale {
+    background-color: white;
+}
+
+.FooterText {
+    font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #00B9B4;
+    margin-left: 15px;
+}
+
+.HeaderScale {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+.InputCheckbox {
+    background-color: white;
+    color:#47341F;
+      font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
+    font-size: 20px;
+    border: 1px;
+}
+
+.InputLabel {
+    background-color: white;
+    color:#DDD1BE;
+      font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
+    font-size: 30px;
+    border: 0px;
+}
+
+.InputLabelSmall {
+    background-color: white;
+    color:#00B9B4;
+      font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
+    font-size: 14px;
+    border: 0px;
+}
+
+.ScaleLink {
+    margin-top: 25px;
+    font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: gray;
+    text-align: center;
+    width: 100%;
+}
+
+.ScaleText {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: orange;
+    text-align: center;
+    width: 100%;
+}
+
+.SkipText {
+    font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #00B9B4;
+    margin-left: 15px;
+}
+
+.TableChoice {
+    width:500px;
+    height:670px;
+       background-color: white;
+    color: white;
+    border: 0px;
+    border-spacing:0px;
+    margin: 0px;
+    /* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+}
+
+.TableInputLabel {
+    width:650px;
+    height:175px;
+       background-color: white;
+    color: white;
+    border: 0px;
+    /* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
+}
+
+.TextDescription {
+    font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 30px;
+    color: #47341F;
+}
+
+.TextHeader {
+    text-align: center;
+    font-family: Omnes-Semibold, "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 30px;
+    color: #47341F;
+}
+
+.TextInfo {
+    text-align: center;
+    font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 14px;
+    color: #47341F;
+}

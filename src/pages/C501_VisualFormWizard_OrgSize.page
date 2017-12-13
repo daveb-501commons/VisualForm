@@ -1,251 +1,249 @@
-<apex:page controller="C501_VisualFormWizard_Controller" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
-    <style type="text/css">
-
-        @font-face {
-            font-family: Omnes-Medium;
-        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Medium.otf')}) format("opentype");
-        }
-
-        @font-face {
-            font-family: Omnes-Regular;
-        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Regular.otf')}) format("opentype");
-        }
-
-        @font-face {
-            font-family: Omnes-Semibold;
-        	font-weight: bold;
-        	src: url({!URLFOR($Resource.C501_VisualFormWizard, 'fonts/Omnes-Semibold.otf')}) format("opentype");
-        }
-        
-        body {
-            background-image : url({!URLFOR($Resource.C501_VisualFormWizard, 'images/BackgroundPattern.svg')});
-        }  
-
-        .TextHeaderLocal {
-        	text-align: center;
-        	font-family: Omnes-Semibold, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 30px;
-        	color: #47341F;
-        }
-        
-        .TextDescriptionLocal {
-        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 30px;
-        	color: #47341F;
-        }
-        
-        .TextInfoLocal {
-        	text-align: center;
-        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 14px;
-        	color: #47341F;
-        }
-        
-        .TableChoiceLocal {
-			width:500px;
-            height:670px;
-           	background-color: white;
-			color: white;
-        	border: 0px;
-        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
-            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
-        }
-
-        .ButtonDivLocal {
-        	display:none;
-        }
-        
-        .ButtonStyleLocal {
-        	margin-top: -35px;
-        	margin-left: 50px;
-        	width: 50px;
-        	height: 50px;
-        	align: right;
-        }
-
-        .SkipTextLocal {
-        	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 14px;
-        	color: #00B9B4;
-        	margin-left: 15px;
-        }
-        
-        .ButtonSkipDivLocal {
-        	margin-top: 25px;
-        	float: right;
-        }
-        
-        .InputLabelLocal {
-			background-color: white;
-        	color:#DDD1BE;
-          	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	text-align: center;
-        	font-size: 30px;
-        	border: 0px;
-        }
-
-        .InputLabelSmallLocal {
-			background-color: white;
-        	color:#00B9B4;
-          	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
-        	text-align: center;
-        	font-size: 14px;
-        	border: 0px;
-        }
-        
-        .InputCheckboxLocal {
-			background-color: white;
-        	color:#47341F;
-          	font-family: Omnes-Medium, "Trebuchet MS", Helvetica, sans-serif;
-        	text-align: center;
-        	font-size: 20px;
-        	border: 1px;
-        }
-        
-        .TableInputLabelLocal {
-			width:650px;
-            height:175px;
-           	background-color: white;
-			color: white;
-        	border: 0px;
-        	/* 0px (X) 4px (Y) 8px (Blur) rgba (white and 25% opacity)*/
-            box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
-        }
-
-        .divScale {
-    		background-color: white;
-		}
-
-        .ScaleTextLocal {
-        	margin-top: 5px;
-        	margin-bottom: 25px;
-        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 24px;
-        	font-weight: bold;
-        	color: orange;
-        	text-align: center;
-        	width: 100%;
-        }
-
-        .ScaleLinkLocal {
-        	margin-top: 25px;
-        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 12px;
-        	font-weight: bold;
-        	color: gray;
-        	text-align: center;
-        	width: 100%;
-        }
-        
-        .HeaderScaleLocal {
-        	margin-top: 50px;
-        	margin-bottom: 10px;
-        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 36px;
-        	font-weight: bold;
-        	text-align: center;
-        	width: 100%;
-        }
-        
-        .DescriptionScaleLocal {
-        	margin-bottom: 50px;
-        	font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;
-        	font-size: 14px;
-        	font-weight: normal;
-        	text-align: center;
-        	width: 100%;
-        }
-        
-    </style>
+<apex:page controller="C501_VisualFormWizard_Controller" action="{!checkUrlParameters}" language="{!strLanguage}" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
     
-    <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
-
-	<div class="TextHeaderLocal" style="margin-top: 120px;">
-	    <apex:outputText Value="How many families does your organization serve?"/>
-    </div>    
-	<div class="TextInfoLocal" style="margin-top: 10px;margin-bottom:40px;">
-	    <apex:outputText styleClass="DescriptionTextLocal" Value="Select on a scale of 100 to 10,000"/>
-    </div>    
-
-    <apex:form >
-
-        <apex:pageBlock id="pageBlockArea" >
-                    
-                    <script type="text/javascript">
-                    function setupField(field) {
+        <apex:stylesheet value="{!URLFOR($Resource.C501_VFW_Resource, 'style.css')}"/>
+        
+        <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+        <script type="text/javascript">
+        
+            $(window).load(function() {
+            });
+        
+            $(window).load(function() {
+                clickImage({!nOrgSizePosition});
+                
+                $('[id$="hiddenOrgSizeOtherDefault"]').val('{!$Label.C501_VFW_Label_OrgSizeOtherDefault}');
+                functionSaveLabels();
+            });
+            
+            var maxDragX = 778;
+            var minDragX = 0;
+            
+            $(function() {
+                
+                $("#draggable").draggable({
+                    axis: "x",
+                    cursor: "move",
+                    drag: function(event, ui) {
                         
-                        if (field.value == "Please Describe Here") {
-
-                            field.style.color = "black";
-                            field.style.textDecoration = "";
-                        	field.value = "";
+                        var leftPosition = ui.position.left;
+                        if (leftPosition > maxDragX) {
+                            ui.position.left = maxDragX;
+                        }
+                        else if (leftPosition < minDragX) {
+                            ui.position.left = minDragX;
                         }
                         
-                        $("[id$='NextStep']").css("display", "block");
+                        setScale(leftPosition, 0);
                     }
-                    </script>
-
-            <table style="margin: 0px auto;" class="TableInputLabelLocal">
-                <tr><td style="padding-left: 69px;padding-top:60px">
-                    <apex:variable var="peopleVar" value="{!scalePeople}"/>
+                });
+                
+                $("#draggable").on("dragstop", function(ev, ui) {
                     
-	                <div style="width:100%">
-		                <div style="width: 275px; margin: 0 auto;">
-		                    <apex:image id="scalePeople" style="height:200px;width:200px;" url="{!URLFOR($Resource.C501_VisualFormWizard, peopleVar)}" onclick="UpdateImage(event.offsetX, event.offsetY); return false;" >
-                                <apex:actionSupport event="onclick" action="{!getOrgSize}" />
-                            </apex:image>
-                        </div>
-                    </div>
+                    var leftPosition = ui.position.left;
+                    setScale(leftPosition, 0);
                     
-                    </td></tr>                
-                
-                <tr><td>
-                    <div class="ScaleTextLocal">
-                        <apex:outputText Value="{!scaleText}"/>
-                    </div>
-                    </td></tr>
-                
-                <tr><td>
-                    <apex:variable var="imageVar" value="{!scaleImage}"/>
-                    <apex:image id="scaleImage" style="width: 800px;margin-left: 25px;margin-right: 25px" url="{!URLFOR($Resource.C501_VisualFormWizard, imageVar)}" onclick="UpdateImage(event.offsetX, event.offsetY); return false;" >
-                        <apex:actionSupport event="onclick" action="{!getOrgSize}" />
-                    </apex:image>
-                    </td></tr>
-                
-                <tr><td style="padding-bottom:40px;padding-top:30px;">
-                    <div style="width:100%">
-                        <div style="width: 150px; margin: 0 auto;">
-                            <apex:pageBlockSection >
-                                <apex:pageBlockSectionItem >
-			                        <apex:outputText styleClass="ScaleLinkLocal" Value="Other? "/>
-                                    <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabelSmallLocal" style="width:150px" id="contactOrganization" value="{!account.C501_Org_SizeOther__c}" />
-                                </apex:pageBlockSectionItem>
-                            </apex:pageBlockSection>
-                        </div>
-                    </div>
-                    </td></tr>
-                
-            </table>
-        
-            <apex:inputHidden id="scaleXClickValue" value="{!scaleXClick}" />
-            <apex:inputHidden id="scaleYClickValue" value="{!scaleYClick}" />
-            <apex:actionFunction name="UpdateImage" action="{!updateScale}" reRender="pageBlockArea">
-                <apex:param name="p1" value="" assignTo="{!scaleXClick}" />
-                <apex:param name="p2" value="" assignTo="{!scaleYClick}" />
-            </apex:actionFunction>
-                
-            <div class="ButtonDivLocal" style="display:block;" id="NextStep">
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgSizeNext}" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="position:relative;left:990px;top:-40px;width:30px;" />
-            </div>
+                    var scaleIndex = Math.round(leftPosition / 130);
+                    dragPosition = scaleIndex * 130;
+                    if (scaleIndex == 1) {
+                        dragPosition += 2;
+                    }
+                    else if (scaleIndex == 5) {
+                        dragPosition -= 1;
+                    }
+                    
+                    $("#draggable").css({left: dragPosition});
+                });
+            });
             
-            <div class="ButtonSkipDivLocal">
-                <div>
-                    <apex:outputText styleClass="SkipTextLocal" Value="Skip" />
+            function imageUpdate() {
+                $("#scaleSlider img").removeClass("opaque");
+                var newScaleImage = $("[id$='" + scaleImage + "']");
+                newScaleImage.addClass("opaque");
+                
+                $("#scalePeople img").removeClass("opaque");
+                var newScalePeople = $("[id$='" + scalePeople + "']");
+                newScalePeople.addClass("opaque");
+                
+                $("[id$='scaleText']").html(scaleText);
+            }
+            
+            function clickImage(leftPosition) {
+                setScale(leftPosition);
+                
+                dragPosition = (Math.round(leftPosition / 130) * 130) + 1;
+                $("#draggable").css({left: dragPosition});
+            }
+            
+            var scaleIndex = 1;
+            var scaleImage = "scaleImage1";
+            var scalePeople = "scalePeople1";
+            var scaleText = "text";
+            
+            function setScale(leftPosition) {
+                
+                scaleIndex = Math.round(leftPosition / 130) + 1;
+                scaleImage = 'scaleImage' + scaleIndex;
+                scalePeople = 'scalePeople' + scaleIndex;
+                
+                if (scaleIndex == 2) {
+                    scaleText = '100 to 200';
+                }
+                else if (scaleIndex == 3) {
+                    scaleText = '200 to 500';
+                }
+                    else if (scaleIndex == 4) {
+                        scaleText = '500 to 1000';
+                    }
+                        else if (scaleIndex == 5) {
+                            scaleText = 'Under 5,000';
+                        }
+                            else if (scaleIndex == 6) {
+                                scaleText = 'Under 10,000';
+                            }
+                                else if (scaleIndex == 7) {
+                                    scaleText = 'Over 10,000';
+                                }
+                                    else {
+                                        scaleText = '100 or Less';
+                                    }
+                
+                $('[id$="hiddenOrgSize"]').val(scaleText);
+                $('[id$="hiddenOrgSizePosition"]').val(leftPosition);
+                functionSaveOrgSize();
+        
+                imageUpdate();
+                showNext();
+            }
+            
+            function clickOtherField(field) {
+                if (field.value == "Please Describe Here") {
+                    
+                    field.style.color = "black";
+                    field.style.textDecoration = "";
+                    field.value = "";
+                }
+                
+                showNext();
+            }
+            
+            function showNext() {
+                $("[id$='NextStep']").css("display", "block");
+            }
+        </script>
+        
+        <div class="TextHeader" style="margin-top: 120px;">
+            <apex:outputText Value="How many families does your organization serve?"/>
+        </div>    
+        <div class="TextInfo" style="margin-top: 10px;margin-bottom:40px;">
+            <apex:outputText styleClass="DescriptionText" Value="Select on a scale of 100 to 10,000"/>
+        </div>    
+    
+        <apex:form >
+    
+            <apex:inputHidden id="hiddenOrgSizeOtherDefault" value="{!strC501_VFW_Label_OrgSizeOtherDefault}" /> 
+            <apex:actionFunction name="functionSaveLabels" action="{!saveLabels}" reRender="sizeOther" />
+            
+            <apex:inputHidden id="hiddenOrgSize" value="{!strOrgSize}" /> 
+            <apex:inputHidden id="hiddenOrgSizePosition" value="{!nOrgSizePosition}" /> 
+            <apex:actionFunction action="{!saveOrgSize}" name="functionSaveOrgSize" reRender="false" />
+    
+            <apex:pageBlock id="pageBlockArea" >
+    
+                <table style="margin: 0px auto;" class="TableInputLabel">
+                    <tr><td style="text-align:center;padding-left: 69px;padding-top:60px">
+                            <div id="scalePeople" class="shadow" style="margin: auto;">
+                                <img class="opaque" id="scalePeople1" style="margin-left:325px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/100_or_Less.svg')}" />
+                                <img id="scalePeople2" style="margin-left:275px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/100_to_200.svg')}" />
+                                <img id="scalePeople3" style="margin-left:225px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/200_to_500.svg')}" />
+                                <img id="scalePeople4" style="margin-left:210px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/500_to_1k.svg')}" />
+                                <img id="scalePeople5" style="margin-left:240px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/Under_5k.svg')}" />
+                                <img id="scalePeople6" style="margin-left:240px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/Under_10k.svg')}" />
+                                <img id="scalePeople7" style="margin-left:240px;height:100px" src="{!URLFOR($Resource.VisualFormWizard, 'images/Over_10k.svg')}" />
+                            </div>
+                        
+                        </td></tr>                
+                    
+                    <tr><td>
+                        <div class="ScaleText">
+                            <apex:outputText id="scaleText" Value="{!strOrgSize}"/>
+                        </div>
+                    </td></tr>
+                    
+                    <tr><td>
+                        <div id="draggable" class="ui-draggable">
+                            <img id="sliderButton" style="z-index:999;position:absolute;margin-left: 28px;width: 26px;" src="{!URLFOR($Resource.VisualFormWizard, 'images/CircleButton.svg')}" />
+                        </div>
+    
+                        <div id="scaleSlider" class="shadow">
+                            <img class="opaque" id="scaleImage1" style="width: 800px;margin-left: 25px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly1.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage2" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly2.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage3" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly3.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage4" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly4.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage5" style="width: 790px;margin-left: 35px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly5.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage6" style="width: 800px;margin-left: 25px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly6.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                            <img id="scaleImage7" style="width: 800px;margin-left: 36px;margin-right: 25px" src="{!URLFOR($Resource.VisualFormWizard, 'images/BarOnly7.svg')}" onclick="clickImage(event.offsetX);return false;" />
+                        </div>
+    
+    <!--
+                        <apex:variable var="imageVar" value="{!scaleImage}" id="scaleImageText"/>
+                        <apex:image id="scaleImage" style="width: 800px;margin-left: 25px;margin-right: 25px" url="{!URLFOR($Resource.VisualFormWizard, 'images/Bar1.svg')}" onclick="UpdateImage(event.offsetX, event.offsetY);setupField();return false;" >
+                            <apex:actionSupport event="onclick" action="{!getOrgSize}" />
+                        </apex:image>
+    -->
+                    </td></tr>
+                    
+                    <tr><td style="padding-bottom:40px;padding-top:80px;">
+                        <div style="width:100%">
+                            <div style="width: 150px; margin: 0 auto;">
+                                <apex:pageBlockSection >
+                                    <apex:pageBlockSectionItem >
+                                        <apex:outputText styleClass="ScaleLink" Value="Other? "/>
+                                        <apex:inputField onfocus="clickOtherField(this);return false" styleClass="InputLabelSmall" style="width:150px" id="sizeOther" value="{!account.C501_Org_SizeOther__c}" />
+                                    </apex:pageBlockSectionItem>
+                                </apex:pageBlockSection>
+                                
+                            </div>
+                        </div>
+                        </td></tr>
+                    
+                </table>
+            
+                <div style="width:100%">
+                    <div style="width: 650px; margin: 0 auto;" class="ButtonDiv" id="NextStep">
+                        <apex:commandLink action="{!getOrgSizeNext}">
+                            <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.VisualFormWizard, 'images/Continue_Button.svg')}" />
+                        </apex:commandLink>
+                    </div>
                 </div>
-                <apex:commandButton styleClass="ButtonStyleLocal" action="{!getOrgSizeNext}" id="skip" image="{!URLFOR($Resource.C501_VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
-            </div>
-            
-        </apex:pageBlock>
         
-    </apex:form>
-</apex:page>
+                <table width="100%">
+                    <tr>
+                        <td style="padding-top:44px;width:40px;">
+                            <div class="ButtonBackDiv">
+                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgName}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Back_Button.svg')}" style="width:30px;"/>
+                            </div>
+                        <td style="padding-top:12px;width:40px;">
+                            <div class="ButtonBackDiv">
+                                <div>
+                                    <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_BackButton}" />
+                                </div>
+                            </div>
+                        </td>
+                        </td>
+                        <td style="padding-right:40px">
+                            <div class="ButtonSkipDiv">
+                                <div>
+                                    <apex:outputText styleClass="FooterText" Value="Skip" />
+                                </div>
+                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgSizeNext}" image="{!URLFOR($Resource.VisualFormWizard, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+            </apex:pageBlock>
+            
+        </apex:form>
+    </apex:page>
