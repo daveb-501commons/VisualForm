@@ -75,8 +75,10 @@ public with sharing class C501_VisualFormWizard_Controller {
         }
 
         try {
-            if (!string.isBlank(ApexPages.currentPage().getParameters().get('managePeople'))) {
-                managePeople = Boolean.valueOf(ApexPages.currentPage().getParameters().get('managePeople'));
+            if (!string.isBlank(ApexPages.currentPage().getParameters().get('managepeople')) 
+                && ApexPages.currentPage().getUrl().containsIgnoreCase(Page.C501_VisualFormWizard_Choice.getUrl())) {
+                
+                managePeople = Boolean.valueOf(ApexPages.currentPage().getParameters().get('managepeople'));
             
                 return getOrgName();
             }
