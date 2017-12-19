@@ -4,6 +4,13 @@
     
     <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
     <script type="text/javascript">
+        
+        $(window).load(function() {
+            $('[id$="hiddenContactErrorName"]').val('{!$Label.C501_VFW_Label_ContactErrorName}');
+            $('[id$="hiddenContactErrorEmail"]').val('{!$Label.C501_VFW_Label_ContactErrorEmail}');
+            $('[id$="hiddenContactErrorZipCode"]').val('{!$Label.C501_VFW_Label_ContactErrorZipCode}');
+	    });
+        
         function setupField(field) {
         
         if (field.value == "John Doe" || field.value == "youremail@domain.com" || field.value == "12345") {
@@ -18,16 +25,20 @@
     </script>
 
 	<div class="TextHeader" style="margin-top: 120px;margin-bottom:40px;">
-	    <apex:outputText Value="Almost there!"/>
+	    <apex:outputText Value="{!$Label.C501_VFW_Label_ContactHeader1}"/>
     </div>    
 	<div class="TextHeader" style="margin-top: 40px;">
-	    <apex:outputText Value="Tell us a little bit about yourself, so we"/>
+	    <apex:outputText Value="{!$Label.C501_VFW_Label_ContactHeader2}"/>
     </div>    
 	<div class="TextHeader" style="margin-top: 10px;margin-bottom:40px;">
-	    <apex:outputText Value="know how to reach you."/>
+	    <apex:outputText Value="{!$Label.C501_VFW_Label_ContactHeader3}"/>
     </div>    
     
     <apex:form >
+
+        <apex:inputHidden id="hiddenContactErrorName" value="{!strC501_VFW_Label_ContactErrorName}" /> 
+        <apex:inputHidden id="hiddenContactErrorEmail" value="{!strC501_VFW_Label_ContactErrorEmail}" /> 
+        <apex:inputHidden id="hiddenContactErrorZipCode" value="{!strC501_VFW_Label_ContactErrorZipCode}" /> 
         
         <apex:pageBlock >
             
@@ -38,7 +49,7 @@
                         <tr><td style="padding-left: 69px;padding-top:60px">
                             <apex:pageBlockSection >
                                 <apex:pageBlockSectionItem >
-	                                <apex:outputText styleClass="TextDescription" Value="* What's your name?" />
+	                                <apex:outputText styleClass="TextDescription" Value="{!$Label.C501_VFW_Label_ContactName}" />
                                 </apex:pageBlockSectionItem>
                             </apex:pageBlockSection>
                         </td></tr>
@@ -53,7 +64,7 @@
                         <tr><td style="padding-left: 69px">
                             <apex:pageBlockSection >
                                 <apex:pageBlockSectionItem >
-	                                <apex:outputText styleClass="TextDescription" Value="* What's your email address?" />
+	                                <apex:outputText styleClass="TextDescription" Value="{!$Label.C501_VFW_Label_ContactEmail}" />
                                 </apex:pageBlockSectionItem>
                             </apex:pageBlockSection>
                         </td></tr>
@@ -68,7 +79,7 @@
                         <tr><td style="padding-left: 69px">
                             <apex:pageBlockSection >
                                 <apex:pageBlockSectionItem >
-	                                <apex:outputText styleClass="TextDescription" Value="What's your zipcode?" />
+	                                <apex:outputText styleClass="TextDescription" Value="{!$Label.C501_VFW_Label_ContactZipCode}" />
                                 </apex:pageBlockSectionItem>
                             </apex:pageBlockSection>
                         </td></tr>
@@ -91,9 +102,17 @@
                     </table>
 
                     <div class="ButtonDiv" id="NextStep">
-                        <apex:commandLink action="{!save}">
-	                        <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" reRender="errorPanel,nameSection,emailSection" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
-                        </apex:commandLink>
+                        <div style="z-index:100;margin-left:275px;margin-top:55px;position:absolute;">
+                            <apex:outputPanel >
+                                <apex:outputText styleClass="ContinueButton" Value="{!$Label.C501_VFW_Label_ContinueButton}" />
+                                <apex:actionSupport event="onclick" action="{!save}" />
+                            </apex:outputPanel>
+                        </div>
+                        <div style="z-index:-1;">
+                            <apex:commandLink action="{!save}">
+                                <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" reRender="errorPanel,nameSection,emailSection" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
+                            </apex:commandLink>
+                        </div>
                     </div>
     
                 </div>
@@ -108,9 +127,10 @@
                     </td>
                     <td style="padding-top:12px;width:40px;">
                         <div class="ButtonBackDiv">
-                            <div>
+                            <apex:outputPanel >
                                 <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_BackButton}" />
-                            </div>
+                                <apex:actionSupport event="onclick" action="{!getContactInfoPrevious}" />
+                            </apex:outputPanel>
                         </div>
                     </td>
 	            </tr>

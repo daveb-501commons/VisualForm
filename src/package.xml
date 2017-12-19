@@ -24,6 +24,8 @@
         <members>Account.C501_Org_Language_Vietnamese__c</members>
         <members>Account.C501_Org_SizeOther__c</members>
         <members>Account.C501_Org_Size__c</members>
+        <members>Account.C501_Organization_Reach_English__c</members>
+        <members>Account.C501_Organization_Reach_Spanish__c</members>
         <members>Account.C501_Organization_Reach__c</members>
         <members>Account.C501_VFW_Org_Name__c</members>
         <members>C501_VFW_Settings__c.C501_VFW_Setting_Choice1_Redirect__c</members>
@@ -36,6 +38,16 @@
     </types>
     <types>
         <members>C501_VFW_Label_BackButton</members>
+        <members>C501_VFW_Label_ContactEmail</members>
+        <members>C501_VFW_Label_ContactErrorEmail</members>
+        <members>C501_VFW_Label_ContactErrorName</members>
+        <members>C501_VFW_Label_ContactErrorZipCode</members>
+        <members>C501_VFW_Label_ContactHeader1</members>
+        <members>C501_VFW_Label_ContactHeader2</members>
+        <members>C501_VFW_Label_ContactHeader3</members>
+        <members>C501_VFW_Label_ContactName</members>
+        <members>C501_VFW_Label_ContactZipCode</members>
+        <members>C501_VFW_Label_ContinueButton</members>
         <members>C501_VFW_Label_OrgChoiceDirect1</members>
         <members>C501_VFW_Label_OrgChoiceDirect2</members>
         <members>C501_VFW_Label_OrgChoiceHeader</members>
@@ -51,11 +63,26 @@
         <members>C501_VFW_Label_OrgLanguageVietnamese</members>
         <members>C501_VFW_Label_OrgNameDefault</members>
         <members>C501_VFW_Label_OrgNameExample</members>
+        <members>C501_VFW_Label_OrgNameHeader1</members>
+        <members>C501_VFW_Label_OrgNameHeader2</members>
+        <members>C501_VFW_Label_OrgNameHeader3</members>
+        <members>C501_VFW_Label_OrgNameHeader4</members>
         <members>C501_VFW_Label_OrgReachDefault</members>
         <members>C501_VFW_Label_OrgReachHeader</members>
         <members>C501_VFW_Label_OrgReachHeaderInfo</members>
         <members>C501_VFW_Label_OrgReachPrint</members>
+        <members>C501_VFW_Label_OrgSize100</members>
+        <members>C501_VFW_Label_OrgSize1000</members>
+        <members>C501_VFW_Label_OrgSize10000</members>
+        <members>C501_VFW_Label_OrgSize10000Plus</members>
+        <members>C501_VFW_Label_OrgSize200</members>
+        <members>C501_VFW_Label_OrgSize500</members>
+        <members>C501_VFW_Label_OrgSize5000</members>
+        <members>C501_VFW_Label_OrgSizeHeader</members>
+        <members>C501_VFW_Label_OrgSizeHeaderInfo</members>
+        <members>C501_VFW_Label_OrgSizeOther</members>
         <members>C501_VFW_Label_OrgSizeOtherDefault</members>
+        <members>C501_VFW_Label_SkipButton</members>
         <name>CustomLabel</name>
     </types>
     <types>

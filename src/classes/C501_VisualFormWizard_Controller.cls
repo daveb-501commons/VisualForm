@@ -11,6 +11,9 @@ public with sharing class C501_VisualFormWizard_Controller {
     public String strC501_VFW_Label_OrgReachDefault {get; set;}
     public String strC501_VFW_Label_OrgSizeOtherDefault {get; set;}
     public String strC501_VFW_Label_OrgLanguageOtherDefault {get; set;}
+    public String strC501_VFW_Label_ContactErrorName {get; set;}
+    public String strC501_VFW_Label_ContactErrorEmail {get; set;}
+    public String strC501_VFW_Label_ContactErrorZipCode {get; set;}
     
     Contact contact;
     Account account;
@@ -75,11 +78,22 @@ public with sharing class C501_VisualFormWizard_Controller {
         }
 
         try {
-            if (!string.isBlank(ApexPages.currentPage().getParameters().get('managepeople')) 
-                && ApexPages.currentPage().getUrl().containsIgnoreCase(Page.C501_VisualFormWizard_Choice.getUrl())) {
+            if (!string.isBlank(ApexPages.currentPage().getParameters().get('managepeople'))) {
                 
-                managePeople = Boolean.valueOf(ApexPages.currentPage().getParameters().get('managepeople'));
-            
+                String paramValue = ApexPages.currentPage().getParameters().get('managepeople');
+                if (paramValue.equalsIgnoreCase('true')) {
+                    managePeople = true;
+                }
+            }
+        }
+        catch (Exception e) {
+			system.debug(e.getMessage());
+        }
+
+        try {
+            if (ApexPages.currentPage().getUrl().containsIgnoreCase(Page.C501_VisualFormWizard_Choice.getUrl()) &&
+               !string.isBlank(ApexPages.currentPage().getParameters().get('managepeople'))) {
+                
                 return getOrgName();
             }
         }
@@ -173,16 +187,16 @@ public with sharing class C501_VisualFormWizard_Controller {
         
         if (contact.C501_VFW_Name__c == 'John Doe' || string.isBlank(contact.C501_VFW_Name__c)) {
             contact.C501_VFW_Name__c = 'John Doe';
-            formError = 'Invalid name';
+            formError = strC501_VFW_Label_ContactErrorName;
             return null;
         }
         if (contact.C501_VFW_Email__c == 'youremail@domain.com' || string.isBlank(contact.C501_VFW_Email__c)) {
             contact.C501_VFW_Email__c = 'youremail@domain.com';
-            formError = 'Invalid email address';
+            formError = strC501_VFW_Label_ContactErrorEmail;
             return null;
         }
         if (contact.C501_VFW_Email__c.length() < 4 || !validateEmail(contact.C501_VFW_Email__c)) {
-            formError = 'Invalid email address';
+            formError = strC501_VFW_Label_ContactErrorEmail;
             return null;
         }
         
@@ -192,7 +206,7 @@ public with sharing class C501_VisualFormWizard_Controller {
             contact.C501_VFW_Zipcode__c = '';
         }
         else if (!Pattern.matches('^[0-9]{5}(?:-[0-9]{4})?$', contact.C501_VFW_Zipcode__c)) {
-            formError = 'Invalid zipcode';
+            formError = strC501_VFW_Label_ContactErrorZipCode;
             return null;
         }
 
@@ -213,6 +227,7 @@ public with sharing class C501_VisualFormWizard_Controller {
         }
         else {
             Account.C501_Org_SizeOther__c = '';
+            Account.C501_Org_Size__c = strOrgSize;
         }
 
         // Check for existing contact
@@ -252,7 +267,7 @@ public with sharing class C501_VisualFormWizard_Controller {
     
     public PageReference finish() {
 
-        C501_VFW_Settings__c standardVFWSetting = C501_VFW_Settings__c.getInstance('Sandbox');
+        C501_VFW_Settings__c standardVFWSetting = C501_VFW_Settings__c.getInstance('Production');
         string redirectURL = standardVFWSetting.C501_VFW_Setting_Choice2_Redirect__c;
         if (managePeople) {
             redirectUrl = standardVFWSetting.C501_VFW_Setting_Choice1_Redirect__c;

@@ -88,25 +88,25 @@
                 scalePeople = 'scalePeople' + scaleIndex;
                 
                 if (scaleIndex == 2) {
-                    scaleText = '100 to 200';
+                    scaleText = '{!$Label.C501_VFW_Label_OrgSize200}';
                 }
                 else if (scaleIndex == 3) {
-                    scaleText = '200 to 500';
+                    scaleText = '{!$Label.C501_VFW_Label_OrgSize500}';
                 }
                     else if (scaleIndex == 4) {
-                        scaleText = '500 to 1000';
+                        scaleText = '{!$Label.C501_VFW_Label_OrgSize1000}';
                     }
                         else if (scaleIndex == 5) {
-                            scaleText = 'Under 5,000';
+                            scaleText = '{!$Label.C501_VFW_Label_OrgSize5000}';
                         }
                             else if (scaleIndex == 6) {
-                                scaleText = 'Under 10,000';
+                                scaleText = '{!$Label.C501_VFW_Label_OrgSize10000}';
                             }
                                 else if (scaleIndex == 7) {
-                                    scaleText = 'Over 10,000';
+                                    scaleText = '{!$Label.C501_VFW_Label_OrgSize10000Plus}';
                                 }
                                     else {
-                                        scaleText = '100 or Less';
+                                        scaleText = '{!$Label.C501_VFW_Label_OrgSize100}';
                                     }
                 
                 $('[id$="hiddenOrgSize"]').val(scaleText);
@@ -117,8 +117,8 @@
                 showNext();
             }
             
-            function clickOtherField(field) {
-                if (field.value == "Please Describe Here") {
+            function setupField(field) {
+                if (field.value == "{!$Label.C501_VFW_Label_OrgSizeOtherDefault}") {
                     
                     field.style.color = "black";
                     field.style.textDecoration = "";
@@ -134,10 +134,10 @@
         </script>
         
         <div class="TextHeader" style="margin-top: 120px;">
-            <apex:outputText Value="How many families does your organization serve?"/>
+            <apex:outputText Value="{!$Label.C501_VFW_Label_OrgSizeHeader}"/>
         </div>    
         <div class="TextInfo" style="margin-top: 10px;margin-bottom:40px;">
-            <apex:outputText styleClass="DescriptionText" Value="Select on a scale of 100 to 10,000"/>
+            <apex:outputText styleClass="DescriptionText" Value="{!$Label.C501_VFW_Label_OrgSizeHeaderInfo}"/>
         </div>    
     
         <apex:form >
@@ -185,13 +185,6 @@
                             <img id="scaleImage6" style="width: 800px;margin-left: 25px;margin-right: 25px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/BarOnly6.svg')}" onclick="clickImage(event.offsetX);return false;" />
                             <img id="scaleImage7" style="width: 800px;margin-left: 36px;margin-right: 25px" src="{!URLFOR($Resource.C501_VFW_Resource, 'images/BarOnly7.svg')}" onclick="clickImage(event.offsetX);return false;" />
                         </div>
-    
-    <!--
-                        <apex:variable var="imageVar" value="{!scaleImage}" id="scaleImageText"/>
-                        <apex:image id="scaleImage" style="width: 800px;margin-left: 25px;margin-right: 25px" url="{!URLFOR($Resource.C501_VFW_Resource, 'images/Bar1.svg')}" onclick="UpdateImage(event.offsetX, event.offsetY);setupField();return false;" >
-                            <apex:actionSupport event="onclick" action="{!getOrgSize}" />
-                        </apex:image>
-    -->
                     </td></tr>
                     
                     <tr><td style="padding-bottom:40px;padding-top:80px;">
@@ -199,8 +192,8 @@
                             <div style="width: 150px; margin: 0 auto;">
                                 <apex:pageBlockSection >
                                     <apex:pageBlockSectionItem >
-                                        <apex:outputText styleClass="ScaleLink" Value="Other? "/>
-                                        <apex:inputField onfocus="clickOtherField(this);return false" styleClass="InputLabelSmall" style="width:150px" id="sizeOther" value="{!account.C501_Org_SizeOther__c}" />
+                                        <apex:outputText styleClass="ScaleLink" Value="{!$Label.C501_VFW_Label_OrgSizeOther}"/>
+                                        <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabelSmall" style="width:150px" id="sizeOther" value="{!account.C501_Org_SizeOther__c}" />
                                     </apex:pageBlockSectionItem>
                                 </apex:pageBlockSection>
                                 
@@ -212,9 +205,17 @@
             
                 <div style="width:100%">
                     <div style="width: 650px; margin: 0 auto;" class="ButtonDiv" id="NextStep">
-                        <apex:commandLink action="{!getOrgSizeNext}">
-                            <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
-                        </apex:commandLink>
+                        <div style="z-index:100;margin-left:275px;margin-top:55px;position:absolute;">
+                            <apex:outputPanel >
+                                <apex:outputText styleClass="ContinueButton" Value="{!$Label.C501_VFW_Label_ContinueButton}" />
+                                <apex:actionSupport event="onclick" action="{!getOrgSizeNext}" />
+                            </apex:outputPanel>
+                        </div>
+                        <div style="z-index:-1;">
+                            <apex:commandLink action="{!getOrgSizeNext}">
+                                <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
+                            </apex:commandLink>
+                        </div>
                     </div>
                 </div>
         
@@ -224,20 +225,26 @@
                             <div class="ButtonBackDiv">
                                 <apex:commandButton styleClass="ButtonStyle" action="{!getOrgName}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Back_Button.svg')}" style="width:30px;"/>
                             </div>
+                        </td>
                         <td style="padding-top:12px;width:40px;">
                             <div class="ButtonBackDiv">
-                                <div>
+                                <apex:outputPanel >
                                     <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_BackButton}" />
-                                </div>
+                                    <apex:actionSupport event="onclick" action="{!getOrgName}" />
+                                </apex:outputPanel>
                             </div>
                         </td>
-                        </td>
-                        <td style="padding-right:40px">
+                        <td style="padding-top:0px;padding-right:15px">
                             <div class="ButtonSkipDiv">
-                                <div>
-                                    <apex:outputText styleClass="FooterText" Value="Skip" />
-                                </div>
-                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgSizeNext}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                                <apex:outputPanel >
+	                                <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_SkipButton}" />
+                                    <apex:actionSupport event="onclick" action="{!getOrgSizeNext}" />
+                                </apex:outputPanel>
+                            </div>
+                        </td>
+                        <td style="padding-top:0px;padding-right:40px;width:30px;">
+                            <div class="ButtonSkipDiv">
+                                <apex:commandButton action="{!getOrgSizeNext}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;"/>
                             </div>
                         </td>
                     </tr>

@@ -71,18 +71,19 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>C501_Organization_Reach__c</fullName>
+        <fullName>C501_Organization_Reach_English__c</fullName>
         <externalId>false</externalId>
-        <label>C501 Organization Reach</label>
+        <label>C501 Organization Reach English</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
         <valueSet>
+            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
                     <fullName>Select an option</fullName>
-                    <default>true</default>
+                    <default>false</default>
                     <label>Select an option</label>
                 </value>
                 <value>
@@ -106,19 +107,19 @@
                     <label>County</label>
                 </value>
                 <value>
-                    <fullName>Regional rural area</fullName>
+                    <fullName>Regional Rural Area</fullName>
                     <default>false</default>
-                    <label>Regional rural area</label>
+                    <label>Regional Rural Area</label>
                 </value>
                 <value>
-                    <fullName>Regional suburban area</fullName>
+                    <fullName>Regional Suburban Area</fullName>
                     <default>false</default>
-                    <label>Regional suburban area</label>
+                    <label>Regional Suburban Area</label>
                 </value>
                 <value>
-                    <fullName>Reservation or territory</fullName>
+                    <fullName>Reservation or Territory</fullName>
                     <default>false</default>
-                    <label>Reservation or territory</label>
+                    <label>Reservation or Territory</label>
                 </value>
                 <value>
                     <fullName>State</fullName>
@@ -126,9 +127,9 @@
                     <label>State</label>
                 </value>
                 <value>
-                    <fullName>Multi State</fullName>
+                    <fullName>Multi-State</fullName>
                     <default>false</default>
-                    <label>Multi State</label>
+                    <label>Multi-State</label>
                 </value>
                 <value>
                     <fullName>National</fullName>
@@ -142,6 +143,90 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>C501_Organization_Reach_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <label>C501 Organization Reach Spanish</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Elige una de las siguientes opciones</fullName>
+                    <default>false</default>
+                    <label>Elige una de las siguientes opciones</label>
+                </value>
+                <value>
+                    <fullName>El barrio</fullName>
+                    <default>false</default>
+                    <label>El barrio</label>
+                </value>
+                <value>
+                    <fullName>El pueblo</fullName>
+                    <default>false</default>
+                    <label>El pueblo</label>
+                </value>
+                <value>
+                    <fullName>La ciudad</fullName>
+                    <default>false</default>
+                    <label>La ciudad</label>
+                </value>
+                <value>
+                    <fullName>El condado</fullName>
+                    <default>false</default>
+                    <label>El condado</label>
+                </value>
+                <value>
+                    <fullName>El área regional rural</fullName>
+                    <default>false</default>
+                    <label>El área regional rural</label>
+                </value>
+                <value>
+                    <fullName>El área regional suburbano</fullName>
+                    <default>false</default>
+                    <label>El área regional suburbano</label>
+                </value>
+                <value>
+                    <fullName>El territorio o la reservación</fullName>
+                    <default>false</default>
+                    <label>El territorio o la reservación</label>
+                </value>
+                <value>
+                    <fullName>El estado</fullName>
+                    <default>false</default>
+                    <label>El estado</label>
+                </value>
+                <value>
+                    <fullName>Múltiples estados</fullName>
+                    <default>false</default>
+                    <label>Múltiples estados</label>
+                </value>
+                <value>
+                    <fullName>El país</fullName>
+                    <default>false</default>
+                    <label>El país</label>
+                </value>
+                <value>
+                    <fullName>Otro</fullName>
+                    <default>false</default>
+                    <label>Otro</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>C501_Organization_Reach__c</fullName>
+        <externalId>false</externalId>
+        <label>C501 Organization Reach</label>
+        <length>128</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>C501_VFW_Org_Name__c</fullName>

@@ -1,7 +1,7 @@
 <apex:page controller="C501_VisualFormWizard_Controller"  action="{!checkUrlParameters}" language="{!strLanguage}" tabStyle="Contact" standardStylesheets="false" showheader="false" sidebar="false">
     
     <apex:stylesheet value="{!URLFOR($Resource.C501_VFW_Resource, 'style.css')}"/>
-
+    
     <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
     <script type="text/javascript">
         
@@ -22,16 +22,16 @@
     </script>
     
 	<div class="TextHeader" style="margin-top:40px;margin-bottom:40px;">
-	    <apex:outputText Value="Great!"/>
+	    <apex:outputText Value="{!$Label.C501_VFW_Label_OrgNameHeader1}"/>
     </div>
 	<div class="TextHeader" style="margin-bottom:10px;">
-	    <apex:outputText Value="Just 3 more questions to know"/>
+	    <apex:outputText Value="{!$Label.C501_VFW_Label_OrgNameHeader2}"/>
     </div>    
 	<div class="TextHeader" style="margin-bottom:40px;">
-	    <apex:outputText Value="how to serve you best."/>
+	    <apex:outputText Value="{!$Label.C501_VFW_Label_OrgNameHeader3}"/>
     </div>    
 	<div class="TextHeader" style="margin-bottom:10px;">
-	    <apex:outputText Value="What is the name of the organization you are a part of?"/>
+	    <apex:outputText Value="{!$Label.C501_VFW_Label_OrgNameHeader4}"/>
     </div>    
 	<div class="TextInfo" style="margin-bottom:40px;">
 	    <apex:outputText Value="{!$Label.C501_VFW_Label_OrgNameExample}"/>
@@ -49,29 +49,29 @@
                     
                     <table class="TableInputLabel">
                         <tr>
-                            <td style="padding-left:69px;padding-bottom:20px;">
+                            <td style="padding-left:45px;padding-bottom:20px;">
                                 <apex:pageBlockSection >
                                     <apex:pageBlockSectionItem >
-                                        <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabel" style="margin-top: 0px;width: 512px; height: 40px;" id="contactOrganization" value="{!account.C501_VFW_Org_Name__c}" />
+                                        <apex:inputField onfocus="setupField(this);return false" styleClass="InputLabel" style="margin-top: 0px;width: 550px; height: 40px;" id="contactOrganization" value="{!account.C501_VFW_Org_Name__c}" />
                                     </apex:pageBlockSectionItem>
                                 </apex:pageBlockSection>
-                                <hr style="margin-left:0px;width:512px;height:2px;color:#47341F;background-color:#47341F;"/>
+                                <hr style="margin-left:0px;width:550px;height:2px;color:#47341F;background-color:#47341F;"/>
                             </td>
-<!--
-                            <td style="padding-top:48px;position:relative;left:-50px;">
-                                <div class="ButtonDiv" id="NextStep">
-                                    <apex:commandButton styleClass="ButtonStyle" action="{!getOrgNameNext}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;" />
-                                </div>
-                            </td>
--->
-                            
                         </tr>
                     </table>
-    
+
                     <div class="ButtonDiv" id="NextStep">
-                        <apex:commandLink action="{!getOrgNameNext}">
-                            <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
-                        </apex:commandLink>
+                        <div style="z-index:100;margin-left:275px;margin-top:55px;position:absolute;">
+                            <apex:outputPanel >
+                                <apex:outputText styleClass="ContinueButton" Value="{!$Label.C501_VFW_Label_ContinueButton}" />
+                                <apex:actionSupport event="onclick" action="{!getOrgNameNext}" />
+                            </apex:outputPanel>
+                        </div>
+                        <div style="z-index:-1;">
+                            <apex:commandLink action="{!getOrgNameNext}">
+                                <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
+                            </apex:commandLink>
+                        </div>
                     </div>
     
                 </div>
@@ -86,17 +86,23 @@
                     </td>
                     <td style="padding-top:12px;width:40px;">
                         <div class="ButtonBackDiv">
-                            <div>
+                            <apex:outputPanel >
                                 <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_BackButton}" />
-                            </div>
+                                <apex:actionSupport event="onclick" action="{!getOrgChoice}" />
+                            </apex:outputPanel>
                         </div>
                     </td>
-                    <td style="padding-right:40px">
+                    <td style="padding-top:0px;padding-right:15px">
                         <div class="ButtonSkipDiv">
-                            <div>
-                                <apex:outputText styleClass="FooterText" Value="Skip" />
-                            </div>
-                            <apex:commandButton styleClass="ButtonStyle" action="{!getOrgNameNext}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                            <apex:outputPanel >
+                                <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_SkipButton}" />
+                                <apex:actionSupport event="onclick" action="{!getOrgNameNext}" />
+                            </apex:outputPanel>
+                        </div>
+                    </td>
+                    <td style="padding-top:0px;padding-right:40px;width:30px;">
+                        <div class="ButtonSkipDiv">
+                            <apex:commandButton action="{!getOrgNameNext}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;"/>
                         </div>
                     </td>
 	            </tr>

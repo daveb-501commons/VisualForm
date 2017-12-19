@@ -169,6 +169,15 @@ ul#selectUl li.unselected:hover {
     height: 50px;
 }
 
+.ContinueButton {
+    background-color: #00B9B4;
+    color:#FFFFFF;
+      font-family: Omnes-Semibold, "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
+    font-size: 24px;
+    border: 0px;
+}
+
 .DescriptionScale {
     margin-bottom: 50px;
     font-family: Omnes-Regular, "Trebuchet MS", Helvetica, sans-serif;

@@ -5,8 +5,13 @@
         <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
         <script type='text/javascript'>//<![CDATA[
             $(window).load(function() {
-    
-                $("select[id$='selectSl'] option").each(function() {
+
+            	var idSelect = 'selectSl';
+            	if ('{!strLanguage}' == 'es') {
+                    idSelect = idSelect + 'Spanish';
+                }
+            
+                $("select[id$=" + idSelect + "] option").each(function() {
                     
                     // Skip first item which is --None--
                     if ($(this).index() > 0) {
@@ -72,10 +77,11 @@
                         <table class="TableInputLabel">
                             <tr>
                                 <td colspan="2" style="padding-left:69px;">
-                                    <apex:inputField id="selectSl" onfocus="setupField(this);return false" styleClass="InputLabel" style="display:none;margin-left: 50px;margin-top: 40px;width: 350px; height: 40px;" value="{!account.C501_Organization_Reach__c}" />
-                                    <ul id="selectUl" onchange="setupField(this);return false" Class="InputLabel" style="margin-left: -20px;margin-top: 40px;width: 450px;">
+                                    <apex:inputField id="selectSl" onfocus="setupField(this);return false" styleClass="InputLabel" style="display:none;margin-left: 50px;margin-top: 40px;width: 350px; height: 40px;" value="{!account.C501_Organization_Reach_English__c}" />
+                                    <apex:inputField id="selectSlSpanish" onfocus="setupField(this);return false" styleClass="InputLabel" style="display:none;margin-left: 50px;margin-top: 40px;width: 350px; height: 40px;" value="{!account.C501_Organization_Reach_Spanish__c}" />
+                                    <ul id="selectUl" onchange="setupField(this);return false" Class="InputLabel" style="margin-left: -60px;margin-top: 40px;width: 525px;">
                                     </ul>
-                                    <hr style="margin-top:-20px;margin-left:0px;width:512px;height:2px;color:#47341F;background-color:#47341F;"/>
+                                    <hr style="margin-top:-20px;margin-left:0px;width:525px;height:2px;color:#47341F;background-color:#47341F;"/>
                                 </td>
                             </tr>
                             <tr>
@@ -89,9 +95,17 @@
                         </table>
     
                         <div class="ButtonDiv" id="NextStep">
-                            <apex:commandLink action="{!getOrgLanguage}">
-                                <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
-                            </apex:commandLink>
+                            <div style="z-index:100;margin-left:275px;margin-top:55px;position:absolute;">
+                                <apex:outputPanel >
+                                    <apex:outputText styleClass="ContinueButton" Value="{!$Label.C501_VFW_Label_ContinueButton}" />
+                                    <apex:actionSupport event="onclick" action="{!getOrgLanguage}" />
+                                </apex:outputPanel>
+                            </div>
+                            <div style="z-index:-1;">
+                                <apex:commandLink action="{!getOrgLanguage}">
+                                    <apex:commandButton style="margin-left:180px;margin-top: 40px;width: 300px; height:64px" styleClass="ButtonStyle" id="save" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Continue_Button.svg')}" />
+                                </apex:commandLink>
+                            </div>
                         </div>
     
                     </div>
@@ -106,17 +120,23 @@
                         </td>
                         <td style="padding-top:12px;width:40px;">
                             <div class="ButtonBackDiv">
-                                <div>
-                                    <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_BackButton}" />
-                                </div>
+                                <apex:outputPanel >
+	                                <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_BackButton}" />
+                                    <apex:actionSupport event="onclick" action="{!getOrgName}" />
+                                </apex:outputPanel>
                             </div>
                         </td>
-                        <td style="padding-right:40px">
+                        <td style="padding-top:0px;padding-right:15px">
                             <div class="ButtonSkipDiv">
-                                <div>
-                                    <apex:outputText styleClass="FooterText" Value="Skip" />
-                                </div>
-                                <apex:commandButton styleClass="ButtonStyle" action="{!getOrgLanguage}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;"/>
+                                <apex:outputPanel >
+	                                <apex:outputText styleClass="FooterText" Value="{!$Label.C501_VFW_Label_SkipButton}" />
+                                    <apex:actionSupport event="onclick" action="{!getOrgLanguage}" />
+                                </apex:outputPanel>
+                            </div>
+                        </td>
+                        <td style="padding-top:0px;padding-right:40px;width:30px;">
+                            <div class="ButtonSkipDiv">
+                                <apex:commandButton action="{!getOrgLanguage}" image="{!URLFOR($Resource.C501_VFW_Resource, 'images/Next_Arrow.svg')}" style="width:30px;"/>
                             </div>
                         </td>
                     </tr>
