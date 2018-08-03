@@ -1,0 +1,74 @@
+[
+    {
+        "ClassName": "C501_VisualFormWizard_ControllerTests", 
+        "StackTrace": null, 
+        "Stats": {
+            "duration": 363
+        }, 
+        "TestTimestamp": "2018-08-03T20:34:16.000+0000", 
+        "Message": null, 
+        "Outcome": "Pass", 
+        "Children": null, 
+        "Method": "C501_VisualFormWizard_ControllerTest_Error"
+    }, 
+    {
+        "ClassName": "ChangePasswordControllerTest", 
+        "StackTrace": null, 
+        "Stats": {
+            "duration": 30
+        }, 
+        "TestTimestamp": "2018-08-03T20:34:16.000+0000", 
+        "Message": null, 
+        "Outcome": "Pass", 
+        "Children": null, 
+        "Method": "testChangePasswordController"
+    }, 
+    {
+        "ClassName": "ForgotPasswordControllerTest", 
+        "StackTrace": null, 
+        "Stats": {
+            "duration": 36
+        }, 
+        "TestTimestamp": "2018-08-03T20:34:16.000+0000", 
+        "Message": null, 
+        "Outcome": "Pass", 
+        "Children": null, 
+        "Method": "testForgotPasswordController"
+    }, 
+    {
+        "ClassName": "MyProfilePageControllerTest", 
+        "StackTrace": null, 
+        "Stats": {
+            "duration": 211
+        }, 
+        "TestTimestamp": "2018-08-03T20:34:16.000+0000", 
+        "Message": null, 
+        "Outcome": "Pass", 
+        "Children": null, 
+        "Method": "testSave"
+    }, 
+    {
+        "ClassName": "SiteLoginControllerTest", 
+        "StackTrace": null, 
+        "Stats": {
+            "duration": 31
+        }, 
+        "TestTimestamp": "2018-08-03T20:34:16.000+0000", 
+        "Message": null, 
+        "Outcome": "Pass", 
+        "Children": null, 
+        "Method": "testSiteLoginController"
+    }, 
+    {
+        "ClassName": "SiteRegisterControllerTest", 
+        "StackTrace": null, 
+        "Stats": {
+            "duration": 47
+        }, 
+        "TestTimestamp": "2018-08-03T20:34:16.000+0000", 
+        "Message": null, 
+        "Outcome": "Pass", 
+        "Children": null, 
+        "Method": "testRegistration"
+    }
+]

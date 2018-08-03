@@ -31,7 +31,7 @@ public with sharing class C501_VisualFormWizard_Controller {
     
     public Contact getContact() {
         
-        if(contact == null) {
+        if (contact == null) {
             contact = new Contact();
             contact.C501_VFW_Name__c = 'John Doe';
             contact.C501_VFW_Email__c = 'youremail@domain.com';
@@ -44,7 +44,7 @@ public with sharing class C501_VisualFormWizard_Controller {
 
     public Account getAccount() {
 
-        if(account == null) {
+        if (account == null) {
             account = new Account();  
         } 
         
@@ -181,10 +181,20 @@ public with sharing class C501_VisualFormWizard_Controller {
         return res; 
     }
 
+    public C501_VFW_Settings__c getSettings() {
+
+        C501_VFW_Settings__c standardVFWSetting = C501_VFW_Settings__c.getInstance('Production_English');
+        if (strLanguage == 'es') {
+            standardVFWSetting = C501_VFW_Settings__c.getInstance('Production_Spanish');
+        }
+
+        return standardVFWSetting;
+    }
+
     public PageReference save() {
 
         formError = '';
-        
+
         if (contact.C501_VFW_Name__c == 'John Doe' || string.isBlank(contact.C501_VFW_Name__c)) {
             contact.C501_VFW_Name__c = 'John Doe';
             formError = strC501_VFW_Label_ContactErrorName;
@@ -214,7 +224,7 @@ public with sharing class C501_VisualFormWizard_Controller {
         if (contact.LastName.contains(' ')) {
             List<String> nameTokens = contact.LastName.split(' ');
             contact.FirstName = nameTokens[0];
-            contact.LastName = contact.LastName.substring(nameTokens[0].length());
+            contact.LastName = contact.LastName.substring(nameTokens[0].length() + 1).deleteWhitespace();
         }
 
         if (string.isBlank(account.name) || account.name == strC501_VFW_Label_OrgNameDefault) {
@@ -230,36 +240,98 @@ public with sharing class C501_VisualFormWizard_Controller {
             Account.C501_Org_Size__c = strOrgSize;
         }
 
-        // Check for existing contact
-        List<Contact> existingContactQuery = [SELECT Account.Name
-                                       FROM Contact
-                                       WHERE Email=:contact.Email AND LastName=:contact.LastName AND C501_VFW_Managed__c=TRUE
-                                       LIMIT 1];
-        if (!existingContactQuery.isEmpty()) {
-            
-            existingContactQuery[0].FirstName = contact.FirstName;
-            existingContactQuery[0].C501_VFW_Zipcode__c = contact.C501_VFW_Zipcode__c;
-            existingContactQuery[0].Account.Name = account.Name;
-            
-            existingContactQuery[0].Account.C501_Organization_Reach__c = account.C501_Organization_Reach__c;
-            existingContactQuery[0].Account.C501_Org_BulkPrinting__c = account.C501_Org_BulkPrinting__c;
-            
-            existingContactQuery[0].Account.C501_Org_Language_English__c = account.C501_Org_Language_English__c;
-            existingContactQuery[0].Account.C501_Org_Language_Other__c = account.C501_Org_Language_Other__c;
-            existingContactQuery[0].Account.C501_Org_Language_Russian__c = account.C501_Org_Language_Russian__c;
-            existingContactQuery[0].Account.C501_Org_Language_Spanish__c = account.C501_Org_Language_Spanish__c;
-            existingContactQuery[0].Account.C501_Org_Language_Vietnamese__c = account.C501_Org_Language_Vietnamese__c;
-            
-            existingContactQuery[0].Account.C501_Org_Size__c = account.C501_Org_Size__c;
-          	existingContactQuery[0].Account.C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
-            
-            update existingContactQuery[0];
-            update existingContactQuery[0].Account;
+        C501_VFW_Settings__c standardVFWSetting = getSettings();
+        Boolean createLead = (standardVFWSetting == null) ? true : standardVFWSetting.C501_VFW_Setting_CreateLead__c;
+
+        if (createLead) {
+            // Check for existing lead
+            List<Lead> existingLeadQuery = [SELECT Company
+                                        FROM Lead
+                                        WHERE Email=:contact.Email AND LastName=:contact.LastName AND C501_VFW_Managed__c=true
+                                        LIMIT 1];
+            if (!existingLeadQuery.isEmpty()) {
+                
+                existingLeadQuery[0].LeadSource = 'VROOM_PROVIDER_FUNNEL';
+                existingLeadQuery[0].FirstName = contact.FirstName;
+                existingLeadQuery[0].C501_VFW_Zipcode__c = contact.C501_VFW_Zipcode__c;
+                existingLeadQuery[0].PostalCode = contact.C501_VFW_Zipcode__c;
+                existingLeadQuery[0].Company = account.Name;
+                
+                existingLeadQuery[0].C501_Organization_Reach__c = account.C501_Organization_Reach__c;
+                existingLeadQuery[0].C501_Org_BulkPrinting__c = account.C501_Org_BulkPrinting__c;
+                
+                existingLeadQuery[0].C501_Org_Language_English__c = account.C501_Org_Language_English__c;
+                existingLeadQuery[0].C501_Org_Language_Other__c = account.C501_Org_Language_Other__c;
+                existingLeadQuery[0].C501_Org_Language_Russian__c = account.C501_Org_Language_Russian__c;
+                existingLeadQuery[0].C501_Org_Language_Spanish__c = account.C501_Org_Language_Spanish__c;
+                existingLeadQuery[0].C501_Org_Language_Vietnamese__c = account.C501_Org_Language_Vietnamese__c;
+                
+                existingLeadQuery[0].C501_Org_Size__c = account.C501_Org_Size__c;
+                existingLeadQuery[0].C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
+                
+                update existingLeadQuery[0];
+            }
+            else {
+                Lead lead = new Lead();
+
+                lead.C501_VFW_Managed__c = true;
+                lead.LeadSource = 'VROOM_PROVIDER_FUNNEL';
+                lead.Email = contact.Email;
+                lead.LastName = contact.LastName;
+                lead.FirstName = contact.FirstName;
+                lead.C501_VFW_Zipcode__c = contact.C501_VFW_Zipcode__c;
+                lead.PostalCode = contact.C501_VFW_Zipcode__c;
+                lead.Company = account.Name;
+                
+                lead.C501_Organization_Reach__c = account.C501_Organization_Reach__c;
+                lead.C501_Org_BulkPrinting__c = account.C501_Org_BulkPrinting__c;
+                
+                lead.C501_Org_Language_English__c = account.C501_Org_Language_English__c;
+                lead.C501_Org_Language_Other__c = account.C501_Org_Language_Other__c;
+                lead.C501_Org_Language_Russian__c = account.C501_Org_Language_Russian__c;
+                lead.C501_Org_Language_Spanish__c = account.C501_Org_Language_Spanish__c;
+                lead.C501_Org_Language_Vietnamese__c = account.C501_Org_Language_Vietnamese__c;
+                
+                lead.C501_Org_Size__c = account.C501_Org_Size__c;
+                lead.C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
+
+                insert lead;
+            }
         }
         else {
-            insert account;
-            contact.AccountId = account.Id;
-            insert contact;
+
+            // Check for existing contact
+            List<Contact> existingContactQuery = [SELECT Account.Name
+                                        FROM Contact
+                                        WHERE Email=:contact.Email AND LastName=:contact.LastName AND C501_VFW_Managed__c=TRUE
+                                        LIMIT 1];
+            if (!existingContactQuery.isEmpty()) {
+                
+                existingContactQuery[0].FirstName = contact.FirstName;
+                existingContactQuery[0].C501_VFW_Zipcode__c = contact.C501_VFW_Zipcode__c;
+                existingContactQuery[0].Account.Name = account.Name;
+                
+                existingContactQuery[0].Account.C501_Organization_Reach__c = account.C501_Organization_Reach__c;
+                existingContactQuery[0].Account.C501_Org_BulkPrinting__c = account.C501_Org_BulkPrinting__c;
+                
+                existingContactQuery[0].Account.C501_Org_Language_English__c = account.C501_Org_Language_English__c;
+                existingContactQuery[0].Account.C501_Org_Language_Other__c = account.C501_Org_Language_Other__c;
+                existingContactQuery[0].Account.C501_Org_Language_Russian__c = account.C501_Org_Language_Russian__c;
+                existingContactQuery[0].Account.C501_Org_Language_Spanish__c = account.C501_Org_Language_Spanish__c;
+                existingContactQuery[0].Account.C501_Org_Language_Vietnamese__c = account.C501_Org_Language_Vietnamese__c;
+                
+                existingContactQuery[0].Account.C501_Org_Size__c = account.C501_Org_Size__c;
+                existingContactQuery[0].Account.C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
+                
+                update existingContactQuery[0];
+                update existingContactQuery[0].Account;
+            }
+            else {
+                insert account;
+
+                contact.AccountId = account.Id;
+                insert contact;
+            }
         }
         
         return finish();
@@ -267,13 +339,16 @@ public with sharing class C501_VisualFormWizard_Controller {
     
     public PageReference finish() {
 
-        C501_VFW_Settings__c standardVFWSetting = C501_VFW_Settings__c.getInstance('Production');
-        string redirectURL = standardVFWSetting.C501_VFW_Setting_Choice2_Redirect__c;
-        if (managePeople) {
-            redirectUrl = standardVFWSetting.C501_VFW_Setting_Choice1_Redirect__c;
+        C501_VFW_Settings__c standardVFWSetting = C501_VFW_Settings__c.getInstance('Production_English');
+        if (strLanguage == 'es') {
+            standardVFWSetting = C501_VFW_Settings__c.getInstance('Production_Spanish');
         }
-        
-        PageReference redirectPage = new PageReference(redirectUrl);
+        string redirectURL = (standardVFWSetting == null) ? 'nourl' : standardVFWSetting.C501_VFW_Setting_Choice2_Redirect__c;
+        if (managePeople) {
+            redirectUrl = (standardVFWSetting == null) ? 'nourl' : standardVFWSetting.C501_VFW_Setting_Choice1_Redirect__c;
+        }
+
+        PageReference redirectPage = new PageReference(redirectURL);
         redirectPage.setRedirect(true);
 
         return redirectPage;

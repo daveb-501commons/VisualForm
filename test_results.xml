@@ -1,0 +1,8 @@
+<testsuite tests="6">
+  <testcase classname="C501_VisualFormWizard_ControllerTests" name="C501_VisualFormWizard_ControllerTest_Error" time="363" />
+  <testcase classname="ChangePasswordControllerTest" name="testChangePasswordController" time="30" />
+  <testcase classname="ForgotPasswordControllerTest" name="testForgotPasswordController" time="36" />
+  <testcase classname="MyProfilePageControllerTest" name="testSave" time="211" />
+  <testcase classname="SiteLoginControllerTest" name="testSiteLoginController" time="31" />
+  <testcase classname="SiteRegisterControllerTest" name="testRegistration" time="47" />
+</testsuite>

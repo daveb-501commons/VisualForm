@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>C501_Org_BulkPrinting__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>C501_Org_BulkPrinting</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>C501_Org_Language_English__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>C501_Org_Language_English</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>C501_Org_Language_Other__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_Org_Language_Other</label>
+        <length>64</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>C501_Org_Language_Russian__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>C501_Org_Language_Russian</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>C501_Org_Language_Spanish__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>C501_Org_Language_Spanish</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>C501_Org_Language_Vietnamese__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>C501_Org_Language_Vietnamese</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>C501_Org_SizeOther__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_Org_SizeOther</label>
+        <length>64</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>C501_Org_Size__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_Org_Size</label>
+        <length>64</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>C501_Organization_Reach_English__c</fullName>
+        <externalId>false</externalId>
+        <label>C501 Organization Reach English</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Select an option</fullName>
+                    <default>false</default>
+                    <label>Select an option</label>
+                </value>
+                <value>
+                    <fullName>Neighborhood</fullName>
+                    <default>false</default>
+                    <label>Neighborhood</label>
+                </value>
+                <value>
+                    <fullName>Town</fullName>
+                    <default>false</default>
+                    <label>Town</label>
+                </value>
+                <value>
+                    <fullName>City</fullName>
+                    <default>false</default>
+                    <label>City</label>
+                </value>
+                <value>
+                    <fullName>County</fullName>
+                    <default>false</default>
+                    <label>County</label>
+                </value>
+                <value>
+                    <fullName>Regional Rural Area</fullName>
+                    <default>false</default>
+                    <label>Regional Rural Area</label>
+                </value>
+                <value>
+                    <fullName>Regional Suburban Area</fullName>
+                    <default>false</default>
+                    <label>Regional Suburban Area</label>
+                </value>
+                <value>
+                    <fullName>Reservation or Territory</fullName>
+                    <default>false</default>
+                    <label>Reservation or Territory</label>
+                </value>
+                <value>
+                    <fullName>State</fullName>
+                    <default>false</default>
+                    <label>State</label>
+                </value>
+                <value>
+                    <fullName>Multi-State</fullName>
+                    <default>false</default>
+                    <label>Multi-State</label>
+                </value>
+                <value>
+                    <fullName>National</fullName>
+                    <default>false</default>
+                    <label>National</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>C501_Organization_Reach_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <label>C501 Organization Reach Spanish</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Elige una de las siguientes opciones</fullName>
+                    <default>false</default>
+                    <label>Elige una de las siguientes opciones</label>
+                </value>
+                <value>
+                    <fullName>El barrio</fullName>
+                    <default>false</default>
+                    <label>El barrio</label>
+                </value>
+                <value>
+                    <fullName>El pueblo</fullName>
+                    <default>false</default>
+                    <label>El pueblo</label>
+                </value>
+                <value>
+                    <fullName>La ciudad</fullName>
+                    <default>false</default>
+                    <label>La ciudad</label>
+                </value>
+                <value>
+                    <fullName>El condado</fullName>
+                    <default>false</default>
+                    <label>El condado</label>
+                </value>
+                <value>
+                    <fullName>El área regional rural</fullName>
+                    <default>false</default>
+                    <label>El área regional rural</label>
+                </value>
+                <value>
+                    <fullName>El área regional suburbano</fullName>
+                    <default>false</default>
+                    <label>El área regional suburbano</label>
+                </value>
+                <value>
+                    <fullName>El territorio o la reservación</fullName>
+                    <default>false</default>
+                    <label>El territorio o la reservación</label>
+                </value>
+                <value>
+                    <fullName>El estado</fullName>
+                    <default>false</default>
+                    <label>El estado</label>
+                </value>
+                <value>
+                    <fullName>Múltiples estados</fullName>
+                    <default>false</default>
+                    <label>Múltiples estados</label>
+                </value>
+                <value>
+                    <fullName>El país</fullName>
+                    <default>false</default>
+                    <label>El país</label>
+                </value>
+                <value>
+                    <fullName>Otro</fullName>
+                    <default>false</default>
+                    <label>Otro</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>C501_Organization_Reach__c</fullName>
+        <externalId>false</externalId>
+        <label>C501 Organization Reach</label>
+        <length>128</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>C501_VFW_Org_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_VFW_Org_Name</label>
+        <length>128</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>C501_VFW_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_VFW_Email</label>
+        <length>128</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>C501_VFW_Managed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>C501 Visual Form Wizard Managed Field</description>
+        <externalId>false</externalId>
+        <label>C501_VFW_Managed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>C501_VFW_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_VFW_Name</label>
+        <length>128</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>C501_VFW_Zipcode__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_VFW_Zipcode</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>    
+</CustomObject>

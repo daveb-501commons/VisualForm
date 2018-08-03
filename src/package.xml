@@ -30,10 +30,27 @@
         <members>Account.C501_VFW_Org_Name__c</members>
         <members>C501_VFW_Settings__c.C501_VFW_Setting_Choice1_Redirect__c</members>
         <members>C501_VFW_Settings__c.C501_VFW_Setting_Choice2_Redirect__c</members>
+        <members>C501_VFW_Settings__c.C501_VFW_Setting_CreateLead__c</members>
         <members>Contact.C501_VFW_Email__c</members>
         <members>Contact.C501_VFW_Managed__c</members>
         <members>Contact.C501_VFW_Name__c</members>
         <members>Contact.C501_VFW_Zipcode__c</members>
+        <members>Lead.C501_Org_BulkPrinting__c</members>
+        <members>Lead.C501_Org_Language_English__c</members>
+        <members>Lead.C501_Org_Language_Other__c</members>
+        <members>Lead.C501_Org_Language_Russian__c</members>
+        <members>Lead.C501_Org_Language_Spanish__c</members>
+        <members>Lead.C501_Org_Language_Vietnamese__c</members>
+        <members>Lead.C501_Org_SizeOther__c</members>
+        <members>Lead.C501_Org_Size__c</members>
+        <members>Lead.C501_Organization_Reach_English__c</members>
+        <members>Lead.C501_Organization_Reach_Spanish__c</members>
+        <members>Lead.C501_Organization_Reach__c</members>
+        <members>Lead.C501_VFW_Org_Name__c</members>
+        <members>Lead.C501_VFW_Email__c</members>
+        <members>Lead.C501_VFW_Managed__c</members>
+        <members>Lead.C501_VFW_Name__c</members>
+        <members>Lead.C501_VFW_Zipcode__c</members>
         <name>CustomField</name>
     </types>
     <types>

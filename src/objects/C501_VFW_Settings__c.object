@@ -18,6 +18,15 @@
         <trackTrending>false</trackTrending>
         <type>Url</type>
     </fields>
+    <fields>
+        <fullName>C501_VFW_Setting_CreateLead__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Create Lead or Create Account/Contact</description>
+        <externalId>false</externalId>
+        <label>C501 VFW Setting Create Lead</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>C501 VFW Settings</label>
     <visibility>Public</visibility>
 </CustomObject>
