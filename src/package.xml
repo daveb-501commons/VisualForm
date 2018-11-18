@@ -46,10 +46,10 @@
         <members>Lead.C501_Organization_Reach_English__c</members>
         <members>Lead.C501_Organization_Reach_Spanish__c</members>
         <members>Lead.C501_Organization_Reach__c</members>
-        <members>Lead.C501_VFW_Org_Name__c</members>
         <members>Lead.C501_VFW_Email__c</members>
         <members>Lead.C501_VFW_Managed__c</members>
         <members>Lead.C501_VFW_Name__c</members>
+        <members>Lead.C501_VFW_Org_Name__c</members>
         <members>Lead.C501_VFW_Zipcode__c</members>
         <name>CustomField</name>
     </types>

@@ -229,16 +229,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>C501_VFW_Org_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>C501_VFW_Org_Name</label>
-        <length>128</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>C501_VFW_Email__c</fullName>
         <externalId>false</externalId>
         <label>C501_VFW_Email</label>
@@ -268,6 +258,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>C501_VFW_Org_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>C501_VFW_Org_Name</label>
+        <length>128</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>C501_VFW_Zipcode__c</fullName>
         <externalId>false</externalId>
         <label>C501_VFW_Zipcode</label>
@@ -276,5 +276,5 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
         <unique>false</unique>
-    </fields>    
+    </fields>
 </CustomObject>
