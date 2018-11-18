@@ -251,7 +251,7 @@ public with sharing class C501_VisualFormWizard_Controller {
                                         LIMIT 1];
             if (!existingLeadQuery.isEmpty()) {
                 
-                existingLeadQuery[0].LeadSource = 'VROOM_PROVIDER_FUNNEL';
+                existingLeadQuery[0].LeadSource = (managePeople) ? 'VROOM_PROVIDER_FUNNEL_MANAGER' : 'VROOM_PROVIDER_FUNNEL_DIRECT';
                 existingLeadQuery[0].FirstName = contact.FirstName;
                 existingLeadQuery[0].C501_VFW_Zipcode__c = contact.C501_VFW_Zipcode__c;
                 existingLeadQuery[0].PostalCode = contact.C501_VFW_Zipcode__c;
@@ -275,7 +275,7 @@ public with sharing class C501_VisualFormWizard_Controller {
                 Lead lead = new Lead();
 
                 lead.C501_VFW_Managed__c = true;
-                lead.LeadSource = 'VROOM_PROVIDER_FUNNEL';
+                lead.LeadSource = (managePeople) ? 'VROOM_PROVIDER_FUNNEL_MANAGER' : 'VROOM_PROVIDER_FUNNEL_DIRECT';
                 lead.Email = contact.Email;
                 lead.LastName = contact.LastName;
                 lead.FirstName = contact.FirstName;
