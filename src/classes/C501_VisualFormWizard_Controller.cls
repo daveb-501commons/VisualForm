@@ -247,7 +247,10 @@ public with sharing class C501_VisualFormWizard_Controller {
             // Check for existing lead
             List<Lead> existingLeadQuery = [SELECT Company
                                         FROM Lead
-                                        WHERE Email=:contact.Email AND LastName=:contact.LastName AND C501_VFW_Managed__c=true
+                                        WHERE Email=:contact.Email
+                                            AND LastName=:contact.LastName
+                                            AND C501_VFW_Managed__c = true
+                                            AND Status <> 'Closed - Converted'
                                         LIMIT 1];
             if (!existingLeadQuery.isEmpty()) {
                 

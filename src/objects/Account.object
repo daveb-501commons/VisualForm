@@ -4,7 +4,7 @@
         <fullName>C501_Org_BulkPrinting__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>C501_Org_BulkPrinting</label>
+        <label>Bulk Printing</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
@@ -12,14 +12,14 @@
         <fullName>C501_Org_Language_English__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>C501_Org_Language_English</label>
+        <label>Language English</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>C501_Org_Language_Other__c</fullName>
         <externalId>false</externalId>
-        <label>C501_Org_Language_Other</label>
+        <label>Language Other</label>
         <length>64</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -30,7 +30,7 @@
         <fullName>C501_Org_Language_Russian__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>C501_Org_Language_Russian</label>
+        <label>Language Russian</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
@@ -38,7 +38,7 @@
         <fullName>C501_Org_Language_Spanish__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>C501_Org_Language_Spanish</label>
+        <label>Language Spanish</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
@@ -46,14 +46,14 @@
         <fullName>C501_Org_Language_Vietnamese__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>C501_Org_Language_Vietnamese</label>
+        <label>Language Vietnamese</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>C501_Org_SizeOther__c</fullName>
         <externalId>false</externalId>
-        <label>C501_Org_SizeOther</label>
+        <label>Organization Size Other</label>
         <length>64</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -63,7 +63,7 @@
     <fields>
         <fullName>C501_Org_Size__c</fullName>
         <externalId>false</externalId>
-        <label>C501_Org_Size</label>
+        <label>Organization Size</label>
         <length>64</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -221,7 +221,7 @@
     <fields>
         <fullName>C501_Organization_Reach__c</fullName>
         <externalId>false</externalId>
-        <label>C501 Organization Reach</label>
+        <label>Organization Reach</label>
         <length>128</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
