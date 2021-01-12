@@ -1,4 +1,4 @@
-public with sharing class C501_VisualFormWizard_Controller {
+public without sharing class C501_VisualFormWizard_Controller {
 
     public Boolean managePeople { get; private set; } 
     public String formError {get; private set;}
@@ -15,9 +15,6 @@ public with sharing class C501_VisualFormWizard_Controller {
     public String strC501_VFW_Label_ContactErrorEmail {get; set;}
     public String strC501_VFW_Label_ContactErrorZipCode {get; set;}
     
-    Contact contact;
-    Account account;
-
     public C501_VisualFormWizard_Controller() {
         
         nOrgSizePosition = 0;
@@ -27,24 +24,28 @@ public with sharing class C501_VisualFormWizard_Controller {
         strC501_VFW_Label_OrgReachDefault = '';
         strC501_VFW_Label_OrgSizeOtherDefault = '';
         strC501_VFW_Label_OrgLanguageOtherDefault = '';
+
+        this.getAccount();
     }
     
+    private Contact contact;
     public Contact getContact() {
         
         if (contact == null) {
             contact = new Contact();
-            contact.C501_VFW_Name__c = 'John Doe';
-            contact.C501_VFW_Email__c = 'youremail@domain.com';
-            contact.C501_VFW_Zipcode__c = '12345';
-            contact.C501_VFW_Managed__c = true;
+            this.Contact.C501_VFW_Name__c = 'John Doe';
+            this.Contact.C501_VFW_Email__c = 'youremail@domain.com';
+            this.Contact.C501_VFW_Zipcode__c = '12345';
+            this.Contact.C501_VFW_Managed__c = true;
         } 
         
         return contact;
     }
 
+    private Account account;
     public Account getAccount() {
 
-        if (account == null) {
+        if (this.account == null) {
             account = new Account();  
         } 
         
@@ -53,14 +54,14 @@ public with sharing class C501_VisualFormWizard_Controller {
 
     public void saveOrgSize() {
         
-        account.C501_Org_Size__c = strOrgSize;
+        this.Account.C501_Org_Size__c = strOrgSize;
     }
 
     public void saveLabels() {
-        account.C501_VFW_Org_Name__c = strC501_VFW_Label_OrgNameDefault;
-        account.C501_Org_Language_Other__c = strC501_VFW_Label_OrgLanguageOtherDefault;
-        account.C501_Org_SizeOther__c = strC501_VFW_Label_OrgSizeOtherDefault;
-        account.C501_Organization_Reach__c = strC501_VFW_Label_OrgReachDefault;
+        this.Account.C501_VFW_Org_Name__c = strC501_VFW_Label_OrgNameDefault;
+        this.Account.C501_Org_Language_Other__c = strC501_VFW_Label_OrgLanguageOtherDefault;
+        this.Account.C501_Org_SizeOther__c = strC501_VFW_Label_OrgSizeOtherDefault;
+        this.Account.C501_Organization_Reach__c = strC501_VFW_Label_OrgReachDefault;
     }
     
     public PageReference checkUrlParameters() {
@@ -124,8 +125,8 @@ public with sharing class C501_VisualFormWizard_Controller {
 
     public PageReference getOrgNameNext() {
         
-        if (account.C501_VFW_Org_Name__c != strC501_VFW_Label_OrgNameDefault) {
-            account.Name = account.C501_VFW_Org_Name__c;
+        if (this.Account.C501_VFW_Org_Name__c != strC501_VFW_Label_OrgNameDefault) {
+            this.Account.Name = this.Account.C501_VFW_Org_Name__c;
         }
             
         if (managePeople) {
@@ -138,7 +139,7 @@ public with sharing class C501_VisualFormWizard_Controller {
     public PageReference getOrgSize() {
 
         strOrgSize = '100 or Less';
-		Account.C501_Org_Size__c = strOrgSize;
+		this.Account.C501_Org_Size__c = strOrgSize;
             
         return Page.C501_VisualFormWizard_OrgSize;
     }
@@ -195,49 +196,49 @@ public with sharing class C501_VisualFormWizard_Controller {
 
         formError = '';
 
-        if (contact.C501_VFW_Name__c == 'John Doe' || string.isBlank(contact.C501_VFW_Name__c)) {
-            contact.C501_VFW_Name__c = 'John Doe';
+        if (this.Contact.C501_VFW_Name__c == 'John Doe' || string.isBlank(this.Contact.C501_VFW_Name__c)) {
+            this.Contact.C501_VFW_Name__c = 'John Doe';
             formError = strC501_VFW_Label_ContactErrorName;
             return null;
         }
-        if (contact.C501_VFW_Email__c == 'youremail@domain.com' || string.isBlank(contact.C501_VFW_Email__c)) {
-            contact.C501_VFW_Email__c = 'youremail@domain.com';
+        if (this.Contact.C501_VFW_Email__c == 'youremail@domain.com' || string.isBlank(this.Contact.C501_VFW_Email__c)) {
+            this.Contact.C501_VFW_Email__c = 'youremail@domain.com';
             formError = strC501_VFW_Label_ContactErrorEmail;
             return null;
         }
-        if (contact.C501_VFW_Email__c.length() < 4 || !validateEmail(contact.C501_VFW_Email__c)) {
+        if (this.Contact.C501_VFW_Email__c.length() < 4 || !validateEmail(this.Contact.C501_VFW_Email__c)) {
             formError = strC501_VFW_Label_ContactErrorEmail;
             return null;
         }
         
-        contact.email = contact.C501_VFW_Email__c;
+        this.Contact.email = this.Contact.C501_VFW_Email__c;
         
-        if (contact.C501_VFW_Zipcode__c == '12345' || string.isBlank(contact.C501_VFW_Zipcode__c)) {
-            contact.C501_VFW_Zipcode__c = '';
+        if (this.Contact.C501_VFW_Zipcode__c == '12345' || string.isBlank(this.Contact.C501_VFW_Zipcode__c)) {
+            this.Contact.C501_VFW_Zipcode__c = '';
         }
-        else if (!Pattern.matches('^[0-9]{5}(?:-[0-9]{4})?$', contact.C501_VFW_Zipcode__c)) {
+        else if (!Pattern.matches('^[0-9]{5}(?:-[0-9]{4})?$', this.Contact.C501_VFW_Zipcode__c)) {
             formError = strC501_VFW_Label_ContactErrorZipCode;
             return null;
         }
 
-        contact.LastName = contact.C501_VFW_Name__c;
-        if (contact.LastName.contains(' ')) {
-            List<String> nameTokens = contact.LastName.split(' ');
-            contact.FirstName = nameTokens[0];
-            contact.LastName = contact.LastName.substring(nameTokens[0].length() + 1).deleteWhitespace();
+        this.Contact.LastName = this.Contact.C501_VFW_Name__c;
+        if (this.Contact.LastName.contains(' ')) {
+            List<String> nameTokens = this.Contact.LastName.split(' ');
+            this.Contact.FirstName = nameTokens[0];
+            this.Contact.LastName = this.Contact.LastName.substring(nameTokens[0].length() + 1).deleteWhitespace();
         }
 
-        if (string.isBlank(account.name) || account.name == strC501_VFW_Label_OrgNameDefault) {
-            account.name = contact.LastName;
+        if (string.isBlank(this.Account.name) || this.Account.name == strC501_VFW_Label_OrgNameDefault) {
+            this.Account.name = this.Contact.LastName;
         }
         
-        if (account.C501_Org_SizeOther__c != strC501_VFW_Label_OrgSizeOtherDefault) {
-            Account.C501_Org_Size__c = '';
-            Account.C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
+        if (this.Account.C501_Org_SizeOther__c != strC501_VFW_Label_OrgSizeOtherDefault) {
+            this.Account.C501_Org_Size__c = '';
+            this.Account.C501_Org_SizeOther__c = this.Account.C501_Org_SizeOther__c;
         }
         else {
-            Account.C501_Org_SizeOther__c = '';
-            Account.C501_Org_Size__c = strOrgSize;
+            this.Account.C501_Org_SizeOther__c = '';
+            this.Account.C501_Org_Size__c = strOrgSize;
         }
 
         C501_VFW_Settings__c standardVFWSetting = getSettings();
@@ -247,30 +248,30 @@ public with sharing class C501_VisualFormWizard_Controller {
             // Check for existing lead
             List<Lead> existingLeadQuery = [SELECT Company
                                         FROM Lead
-                                        WHERE Email=:contact.Email
-                                            AND LastName=:contact.LastName
+                                        WHERE Email=:this.Contact.Email
+                                            AND LastName=:this.Contact.LastName
                                             AND C501_VFW_Managed__c = true
                                             AND Status <> 'Closed - Converted'
                                         LIMIT 1];
             if (!existingLeadQuery.isEmpty()) {
                 
                 existingLeadQuery[0].LeadSource = (managePeople) ? 'VROOM_PROVIDER_FUNNEL_MANAGER' : 'VROOM_PROVIDER_FUNNEL_DIRECT';
-                existingLeadQuery[0].FirstName = contact.FirstName;
-                existingLeadQuery[0].C501_VFW_Zipcode__c = contact.C501_VFW_Zipcode__c;
-                existingLeadQuery[0].PostalCode = contact.C501_VFW_Zipcode__c;
-                existingLeadQuery[0].Company = account.Name;
+                existingLeadQuery[0].FirstName = this.Contact.FirstName;
+                existingLeadQuery[0].C501_VFW_Zipcode__c = this.Contact.C501_VFW_Zipcode__c;
+                existingLeadQuery[0].PostalCode = this.Contact.C501_VFW_Zipcode__c;
+                existingLeadQuery[0].Company = this.Account.Name;
                 
-                existingLeadQuery[0].C501_Organization_Reach__c = account.C501_Organization_Reach__c;
-                existingLeadQuery[0].C501_Org_BulkPrinting__c = account.C501_Org_BulkPrinting__c;
+                existingLeadQuery[0].C501_Organization_Reach__c = this.Account.C501_Organization_Reach__c;
+                existingLeadQuery[0].C501_Org_BulkPrinting__c = this.Account.C501_Org_BulkPrinting__c;
                 
-                existingLeadQuery[0].C501_Org_Language_English__c = account.C501_Org_Language_English__c;
-                existingLeadQuery[0].C501_Org_Language_Other__c = account.C501_Org_Language_Other__c;
-                existingLeadQuery[0].C501_Org_Language_Russian__c = account.C501_Org_Language_Russian__c;
-                existingLeadQuery[0].C501_Org_Language_Spanish__c = account.C501_Org_Language_Spanish__c;
-                existingLeadQuery[0].C501_Org_Language_Vietnamese__c = account.C501_Org_Language_Vietnamese__c;
+                existingLeadQuery[0].C501_Org_Language_English__c = this.Account.C501_Org_Language_English__c;
+                existingLeadQuery[0].C501_Org_Language_Other__c = this.Account.C501_Org_Language_Other__c;
+                existingLeadQuery[0].C501_Org_Language_Russian__c = this.Account.C501_Org_Language_Russian__c;
+                existingLeadQuery[0].C501_Org_Language_Spanish__c = this.Account.C501_Org_Language_Spanish__c;
+                existingLeadQuery[0].C501_Org_Language_Vietnamese__c = this.Account.C501_Org_Language_Vietnamese__c;
                 
-                existingLeadQuery[0].C501_Org_Size__c = account.C501_Org_Size__c;
-                existingLeadQuery[0].C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
+                existingLeadQuery[0].C501_Org_Size__c = this.Account.C501_Org_Size__c;
+                existingLeadQuery[0].C501_Org_SizeOther__c = this.Account.C501_Org_SizeOther__c;
                 
                 update existingLeadQuery[0];
             }
@@ -279,24 +280,24 @@ public with sharing class C501_VisualFormWizard_Controller {
 
                 lead.C501_VFW_Managed__c = true;
                 lead.LeadSource = (managePeople) ? 'VROOM_PROVIDER_FUNNEL_MANAGER' : 'VROOM_PROVIDER_FUNNEL_DIRECT';
-                lead.Email = contact.Email;
-                lead.LastName = contact.LastName;
-                lead.FirstName = contact.FirstName;
-                lead.C501_VFW_Zipcode__c = contact.C501_VFW_Zipcode__c;
-                lead.PostalCode = contact.C501_VFW_Zipcode__c;
-                lead.Company = account.Name;
+                lead.Email = this.Contact.Email;
+                lead.LastName = this.Contact.LastName;
+                lead.FirstName = this.Contact.FirstName;
+                lead.C501_VFW_Zipcode__c = this.Contact.C501_VFW_Zipcode__c;
+                lead.PostalCode = this.Contact.C501_VFW_Zipcode__c;
+                lead.Company = this.Account.Name;
                 
-                lead.C501_Organization_Reach__c = account.C501_Organization_Reach__c;
-                lead.C501_Org_BulkPrinting__c = account.C501_Org_BulkPrinting__c;
+                lead.C501_Organization_Reach__c = this.Account.C501_Organization_Reach__c;
+                lead.C501_Org_BulkPrinting__c = this.Account.C501_Org_BulkPrinting__c;
                 
-                lead.C501_Org_Language_English__c = account.C501_Org_Language_English__c;
-                lead.C501_Org_Language_Other__c = account.C501_Org_Language_Other__c;
-                lead.C501_Org_Language_Russian__c = account.C501_Org_Language_Russian__c;
-                lead.C501_Org_Language_Spanish__c = account.C501_Org_Language_Spanish__c;
-                lead.C501_Org_Language_Vietnamese__c = account.C501_Org_Language_Vietnamese__c;
+                lead.C501_Org_Language_English__c = this.Account.C501_Org_Language_English__c;
+                lead.C501_Org_Language_Other__c = this.Account.C501_Org_Language_Other__c;
+                lead.C501_Org_Language_Russian__c = this.Account.C501_Org_Language_Russian__c;
+                lead.C501_Org_Language_Spanish__c = this.Account.C501_Org_Language_Spanish__c;
+                lead.C501_Org_Language_Vietnamese__c = this.Account.C501_Org_Language_Vietnamese__c;
                 
-                lead.C501_Org_Size__c = account.C501_Org_Size__c;
-                lead.C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
+                lead.C501_Org_Size__c = this.Account.C501_Org_Size__c;
+                lead.C501_Org_SizeOther__c = this.Account.C501_Org_SizeOther__c;
 
                 insert lead;
             }
@@ -306,25 +307,25 @@ public with sharing class C501_VisualFormWizard_Controller {
             // Check for existing contact
             List<Contact> existingContactQuery = [SELECT Account.Name
                                         FROM Contact
-                                        WHERE Email=:contact.Email AND LastName=:contact.LastName AND C501_VFW_Managed__c=TRUE
+                                        WHERE Email=:this.Contact.Email AND LastName=:this.Contact.LastName AND C501_VFW_Managed__c=TRUE
                                         LIMIT 1];
             if (!existingContactQuery.isEmpty()) {
                 
-                existingContactQuery[0].FirstName = contact.FirstName;
-                existingContactQuery[0].C501_VFW_Zipcode__c = contact.C501_VFW_Zipcode__c;
-                existingContactQuery[0].Account.Name = account.Name;
+                existingContactQuery[0].FirstName = this.Contact.FirstName;
+                existingContactQuery[0].C501_VFW_Zipcode__c = this.Contact.C501_VFW_Zipcode__c;
+                existingContactQuery[0].Account.Name = this.Account.Name;
                 
-                existingContactQuery[0].Account.C501_Organization_Reach__c = account.C501_Organization_Reach__c;
-                existingContactQuery[0].Account.C501_Org_BulkPrinting__c = account.C501_Org_BulkPrinting__c;
+                existingContactQuery[0].Account.C501_Organization_Reach__c = this.Account.C501_Organization_Reach__c;
+                existingContactQuery[0].Account.C501_Org_BulkPrinting__c = this.Account.C501_Org_BulkPrinting__c;
                 
-                existingContactQuery[0].Account.C501_Org_Language_English__c = account.C501_Org_Language_English__c;
-                existingContactQuery[0].Account.C501_Org_Language_Other__c = account.C501_Org_Language_Other__c;
-                existingContactQuery[0].Account.C501_Org_Language_Russian__c = account.C501_Org_Language_Russian__c;
-                existingContactQuery[0].Account.C501_Org_Language_Spanish__c = account.C501_Org_Language_Spanish__c;
-                existingContactQuery[0].Account.C501_Org_Language_Vietnamese__c = account.C501_Org_Language_Vietnamese__c;
+                existingContactQuery[0].Account.C501_Org_Language_English__c = this.Account.C501_Org_Language_English__c;
+                existingContactQuery[0].Account.C501_Org_Language_Other__c = this.Account.C501_Org_Language_Other__c;
+                existingContactQuery[0].Account.C501_Org_Language_Russian__c = this.Account.C501_Org_Language_Russian__c;
+                existingContactQuery[0].Account.C501_Org_Language_Spanish__c = this.Account.C501_Org_Language_Spanish__c;
+                existingContactQuery[0].Account.C501_Org_Language_Vietnamese__c = this.Account.C501_Org_Language_Vietnamese__c;
                 
-                existingContactQuery[0].Account.C501_Org_Size__c = account.C501_Org_Size__c;
-                existingContactQuery[0].Account.C501_Org_SizeOther__c = account.C501_Org_SizeOther__c;
+                existingContactQuery[0].Account.C501_Org_Size__c = this.Account.C501_Org_Size__c;
+                existingContactQuery[0].Account.C501_Org_SizeOther__c = this.Account.C501_Org_SizeOther__c;
                 
                 update existingContactQuery[0];
                 update existingContactQuery[0].Account;
@@ -332,7 +333,7 @@ public with sharing class C501_VisualFormWizard_Controller {
             else {
                 insert account;
 
-                contact.AccountId = account.Id;
+                this.Contact.AccountId = this.Account.Id;
                 insert contact;
             }
         }
